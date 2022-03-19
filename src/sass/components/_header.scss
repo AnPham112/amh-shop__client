@@ -1,0 +1,137 @@
+.header {
+  background-color: $main-bg;
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  border-bottom: 2px solid #5c6062;
+  transition: height 0.3s ease;
+
+  @include tablet {
+    height: $header-tablet-height;
+  }
+  @include mobile {
+    height: $header-mobile-height;
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  &.shrink {
+    height: $header-shrink-height;
+    z-index: 40;
+
+    @include mobile {
+      height: $header-mobile-height;
+    }
+  }
+
+  &__logo {
+    @include flex(center, center);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    &-img {
+      width: 65px;
+      @include tablet {
+        width: 5.5rem;
+      }
+      @include mobile {
+        width: 4rem;
+      }
+    }
+  }
+
+  &__menu {
+    @include flex(center, space-between);
+    height: 100%;
+    font-size: 1.6rem;
+
+    &__mobile-toggle {
+      display: none;
+      @include tabletAndMobile {
+        color: #bababa;
+        padding: 6px 6px 6px 0;
+      }
+      @include tablet {
+        display: block;
+        
+      }
+      @include mobile {
+        display: block;
+      }
+    }
+
+
+    &__item {
+      color: $txt-main-color;
+    }
+    &__item  ~ &__item{
+      margin-left: 3rem;
+      @include mobile {
+        margin-left: 1rem;
+      }
+    }
+    
+    &__item.active {
+      font-weight: 600;
+      color: $main-color;
+    }
+    &__item:hover {
+      color: $main-color;
+    }
+
+    &__left, &__right {
+      @include flex(center, center);
+      height: 100%;
+    }
+
+    &__left {
+      &__close {
+        display: none;
+      }
+      @include tabletAndMobile {
+        flex-direction: column;
+        background-color: $main-bg;
+        position: absolute;
+        inset: 0;
+        height: 100vh;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+
+        &.active {
+          transform: translateX(0);
+        }
+
+        &__item ~ &__item {
+          margin-left: unset;
+          margin-top: 28px;
+        }
+
+        &__close {
+          display: block;
+          position: absolute;
+          left: 22px;
+          top: 19px;
+          color: #bababa;
+          padding: 6px 6px 6px 0;
+          @include mobile {
+            left: 12px;
+            top: 10px;
+          }
+        }
+      }
+    }
+    &__right {
+      &__item {
+        @include tablet {
+            margin-left: 10px;
+        }
+      }
+    }
+  }
+}

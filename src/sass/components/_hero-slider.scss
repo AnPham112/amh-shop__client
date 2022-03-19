@@ -1,0 +1,201 @@
+.hero-slider {
+  height: 100vh;
+  max-height: 1080px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 50px;
+  margin-top: -9.5rem;
+
+  @include tablet {
+    margin-top: calc(#{$header-tablet-height} * -1);
+  }
+  @include mobile {
+    margin-top: calc(#{$header-mobile-height} * -1);
+  }
+
+  &__item {
+    @include flex(center, space-between);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+
+    @include tabletAndMobile {
+      flex-direction: column-reverse;
+      padding-top: $header-tablet-height;
+    }
+
+    @include mobile {
+      padding-top: $header-mobile-height;
+      padding-bottom: 40px;
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: visible;
+    }
+
+    &__info {
+      width: 58%;
+
+      @include tabletAndMobile {
+        width: 100%;
+        flex-grow: 1;
+      }
+      &__title,
+      &__description {
+        margin-bottom: 60px;
+        @include tabletAndMobile {
+          margin-bottom: 15px;
+        }
+      }
+      &__title {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        font-size: 5rem;
+        background: linear-gradient(to right, #efdf9a 8%, #f78b7c 92%);
+        -webkit-background-clip: text;
+      	-webkit-text-fill-color: transparent;
+        line-height: 7rem;
+        overflow: hidden;
+        @include mobile {
+          font-size: 2.5rem;
+          line-height: 3.5rem;
+        }
+      }
+      &__description {
+        color: $txt-main-color;
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+        overflow: hidden;
+        @include mobile {
+          font-size: 1.2rem;
+          line-height: 1.6rem;
+        }
+      }
+
+      &__description > span
+      // &__btn button
+      {
+        display: block;
+        transform: translateY(-70%);
+        transition: transform 0.6s ease;
+      }
+    }
+
+    &.active &__info{
+      &__description > span
+      // &__btn button
+      {
+        transform: translateY(0);
+      }
+    }
+    &__image {
+      flex-grow: 1;
+      position: relative;
+      height: 100%;
+      z-index: 30;
+      pointer-events: none;
+
+      @include tablet {
+        width: 100%;
+        height: 46%;
+        @include flex(center, center);
+        flex-grow: unset;
+        z-index: 10;
+      }
+      @include mobile {
+        width: 100%;
+        height: 40%;
+        @include flex(center, center);
+        flex-grow: unset;
+        z-index: 10;
+      }
+
+      img {
+        height: 100vh;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: scale(0.6) rotate(30deg);
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        @include tabletAndMobile {
+          height: 100%;
+          position: relative;
+        }
+      }
+
+      .shape {
+        $size: 450px;
+        height: $size;
+        width: $size;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: border-radius 14s ease;
+        animation: borderRadiusStyle 8s infinite;
+        &--pink {
+          background-color: #f78b7c;
+        }
+
+        @include tabletAndMobile {
+          $size: 22rem;
+          height: $size;
+          width: $size;
+          top: 50%;
+          right: 50%;
+          transform: translate(50%, -50%);
+        }
+        @include mobile {
+          $size: 12rem;
+          height: $size;
+          width: $size;
+        }
+      }
+    }
+
+    &.active &__image {
+      img {
+        transform: scale(1) rotate(0deg);
+      }
+    }
+  }
+  &__control {
+    @include flex(center, center);
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    &__item ~ &__item {
+      margin-left: 20px;
+    }
+    &__item {
+      @include flex(center, center);
+      font-size: 2rem;
+      cursor: pointer;
+      color: #bababa;
+
+      &:hover {
+        color: $main-color;
+      }
+    }
+  }
+}
+
+@keyframes borderRadiusStyle {
+  0% {
+    border-radius: 54% 46% 58% 42% / 29% 24% 76% 71% ;
+  }
+  50% {
+    border-radius: 52% 48% 58% 42% / 43% 49% 51% 57%;
+  }
+  100% {
+    border-radius: 33% 67% 28% 72% / 51% 28% 72% 49%;
+  }
+}
