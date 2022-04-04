@@ -7,20 +7,24 @@ $txt-white: #fff;
 
 $btn-main-color: $main-color;
 $btn-second-color: #f78b7c;
+$btn-third-color: #f53838;
 
-$header-height: 170px;
+$header-height: 100px;
 $header-tablet-height: 70px;
 $header-mobile-height: 50px;
-$header-shrink-height: 70px;
-
-$box-shadow: rgba(255 , 255, 255, 0.4) 0px 6px 20px;
+// $header-shrink-height: 70px;
 
 $mobile-width: 600px;
 $tablet-width: 1024px;
 
+$border-width: 1px;
+
 // button color
 $colors: (
-  "red" :#ff00004d,
-  "main": $btn-main-color,
+  "blue": #0070f3,
+  "yellow": $main-color,
+  "red" : $btn-third-color,
+  "main": $main-bg,
   "pink": $btn-second-color,
+  "white": #fff,
 )

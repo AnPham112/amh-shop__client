@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import AngleLeft from '../assets/icons/angle-left-solid.svg'
-import AngleRight from '../assets/icons/angle-right-solid.svg'
-import Button from './Button';
+import { ButtonLinearGradient } from './Button';
 
 function HeroSlider(props) {
   const { data, control } = props;
@@ -33,30 +31,33 @@ function HeroSlider(props) {
       }
     }
   }, [props.auto, nextSlide, timeOut])
+
   return (
-    <div className="hero-slider">
-      {
-        data.map((item, index) => (
-          <HeroSliderItem key={index} item={item} active={index === activeSlide} />
-        ))
-      }
-      {
-        control ? (
-          <div className="hero-slider__control">
-            <div className="hero-slider__control__item" onClick={prevSlide}>
-              <img src={AngleLeft} alt="" width={20} />
-            </div>
-            <div className="hero-slider__control__item">
-              <div className="index">
-                {activeSlide + 1}/{data.length}
+    <div className="container">
+      <div className="hero-slider">
+        {
+          data.map((item, index) => (
+            <HeroSliderItem key={index} item={item} active={index === activeSlide} />
+          ))
+        }
+        {
+          control ? (
+            <div className="hero-slider__control">
+              <div className="hero-slider__control__item hero-slider__control__item-action" onClick={prevSlide}>
+                <i className="fa-solid fa-angle-left"></i>
+              </div>
+              <div className="hero-slider__control__item">
+                <div className="index">
+                  {activeSlide + 1}/{data.length}
+                </div>
+              </div>
+              <div className="hero-slider__control__item hero-slider__control__item-action" onClick={nextSlide}>
+                <i className="fa-solid fa-angle-right"></i>
               </div>
             </div>
-            <div className="hero-slider__control__item" onClick={nextSlide}>
-              <img src={AngleRight} alt="" width={20} />
-            </div>
-          </div>
-        ) : null
-      }
+          ) : null
+        }
+      </div>
     </div>
   )
 }
@@ -73,12 +74,12 @@ function HeroSliderItem({ item, active }) {
         </div>
         <div className="hero-slider__item__info__btn">
           <Link to={item.path}>
-            <Button
+            <ButtonLinearGradient
               icon="cart-plus"
               animate={true}
             >
               Shop now
-            </Button>
+            </ButtonLinearGradient>
           </Link>
         </div>
       </div>

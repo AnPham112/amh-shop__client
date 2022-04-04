@@ -1,17 +1,39 @@
 import React from 'react'
 import Button from './Button'
 
-function ProductInfo({ product }) {
+function ProductInfo({ productDetail }) {
   return (
-    <div style={{ backgroundColor: '#fff' }} className="product-info">
-      <img className="product-info__img" src='' alt='123' />
-      <div className="product-info__title">{product.title}</div>
-      <div className="product-info__price">{product.price}</div>
-      <div className="product-info__desc">{product.description}</div>
-      <div className="product-info__category">{product.category}</div>
-      <div className="product-info__actions">
-        <Button>Add to cart</Button>
-        <Button>Buy</Button>
+    <div className="container">
+      <div className="product-info">
+
+        <div className="product-info__img"  >
+          <img src={productDetail.images.url} alt='123' />
+        </div>
+        <div className="product-info__detail">
+          <h2 className="product-info__detail__title">{productDetail.title}</h2>
+          <p className="product-info__detail__price">${productDetail.price}</p>
+          <p className="product-info__detail__desc">{productDetail.description}</p>
+          <p className="product-info__detail__content">{productDetail.content}</p>
+          <p className="product-info__detail__category">Category: {productDetail.category}</p>
+          <p className="product-info__detail__sold">Sold: {productDetail.sold}</p>
+          <div className="product-info__detail__actions">
+            <Button
+              backgroundcolor="pink"
+              shadowcolor="pink"
+              color="white"
+            >
+              Add to cart
+            </Button>
+            <Button
+              backgroundcolor="red"
+              shadowcolor="red"
+              color="white"
+            >
+              Buy
+            </Button>
+          </div>
+        </div>
+
       </div>
     </div>
 

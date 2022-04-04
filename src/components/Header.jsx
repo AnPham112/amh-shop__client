@@ -1,102 +1,102 @@
-import React, { useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Logo from '../assets/icons/logo.svg'
-import Bars from '../assets/icons/bars-solid.svg'
-import ShoppingCart from '../assets/icons/cart-shopping-solid.svg'
-import AngleLeft from '../assets/icons/angle-left-solid.svg'
+import { GlobalStateContext } from '../GlobalState'
+import { logout } from '../redux/actions/authActions'
 import '../sass/index.scss'
-const mainNav = [
-  {
-    display: "Home",
-    path: "/"
-  },
-  {
-    display: "Products",
-    path: "/products"
-  }
-]
+import Button from './Button'
+
 
 function Header() {
-  const location = useLocation();
-  const pathname = location.pathname
+  const state = useContext(GlobalStateContext)
+  const [isLogged, setIsLogged] = state.userAPI.isLogged
+  const [isAdmin, setIsAdmin] = state.userAPI.isAdmin
+  const [cart] = state.userAPI.cart
+  const dispatch = useDispatch();
 
-  // active nav
-  const activeNav = mainNav.findIndex(elm => elm.path === pathname)
-
-  // handle header shrink
-  const headerRef = useRef(null)
-  useEffect(() => {
-    const handleHeaderShrink = () => {
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        headerRef.current.classList.add('shrink')
-      } else {
-        headerRef.current.classList.remove('shrink')
-      }
-    }
-    window.addEventListener("scroll", handleHeaderShrink)
-    return () => {
-      window.removeEventListener("scroll", handleHeaderShrink)
-    }
-  }, [])
-
-  const menuLeft = useRef(null)
-  const menuToggle = () => menuLeft.current.classList.toggle('active')
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   return (
-    <div className="header" ref={headerRef}>
+    <div className="header">
       <div className="container">
-        <div className="header__logo">
-          <Link to='/'>
-            <img className="header__logo-img" src={Logo} alt="" />
-          </Link>
-        </div>
-        <div className="header__menu">
-          {/* Open sidebar mobile */}
-          <div className="header__menu__mobile-toggle" onClick={menuToggle}>
-            {/* <img src={Bars} alt="" width={30} /> */}
-            <i className="fa-solid fa-bars header__menu__mobile-icon"></i>
+        <div className="header__wrapper">
+          <div className="header__menu__bars" id="menu">
+            <i className="fa-solid fa-bars header__menu__bars-icon"></i>
           </div>
-          {/* End open sidebar mobile */}
-          <div className="header__menu__left" ref={menuLeft}>
-            {/* Close sidebar mobile  */}
-            <div className="header__menu__left__close" onClick={menuToggle}>
-              {/* <img src={AngleLeft} alt="" width={25} /> */}
-              <i className="fa-solid fa-angle-left"></i>
-            </div>
-            {/* End close sidebar mobile  */}
-            {
-              mainNav.map((item, index) => (
-                <div
-                  key={index}
-                  className={`header__menu__item 
-                  header__menu__left__item 
-                  ${index === activeNav ? 'active' : ''}`}
-                  onClick={menuToggle}
-                >
-                  <Link to={item.path}>
-                    <span>{item.display}</span>
-                  </Link>
-                </div>
-              ))
+          <div className="header__logo">
+            <Link to='/'>
+              {isAdmin
+                ? (
+                  <div className="header__logo--admin">
+                    <img className="header__logo-img" src={Logo} alt="" />
+                    <h2>Admin</h2>
+                  </div>
+                )
+                : <img className="header__logo-img" src={Logo} alt="" />
+              }
+            </Link>
+          </div>
+          <ul className="header__menu">
+            <li className="header__menu__item">
+              <Link to="/shop" className="header__menu__item__link">{isAdmin ? "Products" : "Shop"}</Link>
+            </li>
+            {isAdmin ? (
+              <>
+                <li className="header__menu__item">
+                  <Link to="/" className="header__menu__item__link">Create product</Link>
+                </li>
+                <li className="header__menu__item">
+                  <Link to="/" className="header__menu__item__link">Categories</Link>
+                </li>
+              </>
+            )
+              : null
             }
-          </div>
-          <div className="header__menu__right">
-            <div className="header__menu__item header__menu__right__item">
-              <Link to="/login">
-                <span>Login</span>
-              </Link>
-            </div>
-            <div className="header__menu__item header__menu__right__item">
-              <Link to="/login">
-                <span>Sign up</span>
-              </Link>
-            </div>
-            <div className="header__menu__item header__menu__right__item">
+
+            {isLogged ? (
+              <>
+                <li className="header__menu__item">
+                  <Link to="/" className="header__menu__item__link">History</Link>
+                </li>
+                <li className="header__menu__item">
+                  <Button
+                    bg="yellow"
+                    padding={1}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="header__menu__item">
+                  <Link to="/login" className="header__menu__item__link__login">Login</Link>
+                </li>
+                <li className="header__menu__item">
+                  <Link to="/register" className="header__menu__item__link__register">Register</Link>
+                </li>
+              </>
+            )}
+
+
+            <li className="header__menu__close">
+              <i className="fa-solid fa-angle-left"></i>
+            </li>
+          </ul>
+
+          {isAdmin ? '' : (
+            <div className="header__menu__cart">
+              <span>{cart.length}</span>
               <Link to="/cart">
-                <i className="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping header__menu__cart__icon"></i>
               </Link>
             </div>
-          </div>
+          )}
+
         </div>
       </div>
     </div>

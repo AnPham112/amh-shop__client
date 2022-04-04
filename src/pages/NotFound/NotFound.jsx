@@ -2,7 +2,17 @@ import React from 'react'
 
 function NotFound() {
   return (
-    <div>NotFound</div>
+    <>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+      <div>NotFound NotFound NotFound</div>
+    </>
   )
 }
 

@@ -1,16 +1,14 @@
 .hero-slider {
-  height: 100vh;
+  height: 90vh;
   max-height: 1080px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 50px;
-  margin-top: -9.5rem;
 
   @include tablet {
-    margin-top: calc(#{$header-tablet-height} * -1);
+    margin-top: $header-tablet-height;
   }
   @include mobile {
-    margin-top: calc(#{$header-mobile-height} * -1);
+    margin-top: $header-mobile-height;
   }
 
   &__item {
@@ -29,7 +27,7 @@
 
     @include mobile {
       padding-top: $header-mobile-height;
-      padding-bottom: 40px;
+      padding-bottom: $header-mobile-height;
     }
 
     &.active {
@@ -44,12 +42,13 @@
       @include tabletAndMobile {
         width: 100%;
         flex-grow: 1;
+        margin-top: 3rem;
       }
       &__title,
       &__description {
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         @include tabletAndMobile {
-          margin-bottom: 15px;
+          margin-bottom: 2rem;
         }
       }
       &__title {
@@ -62,7 +61,7 @@
         line-height: 7rem;
         overflow: hidden;
         @include mobile {
-          font-size: 2.5rem;
+          font-size: 3rem;
           line-height: 3.5rem;
         }
       }
@@ -78,7 +77,6 @@
       }
 
       &__description > span
-      // &__btn button
       {
         display: block;
         transform: translateY(-70%);
@@ -88,7 +86,6 @@
 
     &.active &__info{
       &__description > span
-      // &__btn button
       {
         transform: translateY(0);
       }
@@ -97,26 +94,25 @@
       flex-grow: 1;
       position: relative;
       height: 100%;
-      z-index: 30;
       pointer-events: none;
 
       @include tablet {
         width: 100%;
-        height: 46%;
+        height: 50%;
         @include flex(center, center);
         flex-grow: unset;
         z-index: 10;
       }
       @include mobile {
         width: 100%;
-        height: 40%;
+        height: 48%;
         @include flex(center, center);
         flex-grow: unset;
         z-index: 10;
       }
 
       img {
-        height: 100vh;
+        height: 94vh;
         position: absolute;
         bottom: 0;
         right: 0;
@@ -130,7 +126,7 @@
       }
 
       .shape {
-        $size: 450px;
+        $size: 430px;
         height: $size;
         width: $size;
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
@@ -181,7 +177,7 @@
       cursor: pointer;
       color: #bababa;
 
-      &:hover {
+      &-action:hover {
         color: $main-color;
       }
     }

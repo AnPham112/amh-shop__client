@@ -2,19 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import axios from 'axios';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import store from './redux/store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { GlobalStateProvider } from './GlobalState';
 
-
-axios.defaults.baseURL = 'http://localhost:5000/api'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <App />
-    {/* </Provider> */}
-
+    <Provider store={store}>
+      <GlobalStateProvider>
+        <App />
+        <ToastContainer />
+      </GlobalStateProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

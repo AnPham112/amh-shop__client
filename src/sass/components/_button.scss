@@ -1,19 +1,43 @@
 .btn {
   border: 0;
   outline: 0;
-  color: #000;
   font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
   position: relative;
-  background-color: #000;
   border-radius: 0.4rem;
-  background-image: linear-gradient(to right, $btn-main-color 10%, $btn-second-color);
   overflow: hidden;
+
+  a {
+    display: block;
+    padding: 8px 16px;
+  }
+
   @include mobile {
     font-size: 1rem;
     width: 100%;
+    &+.btn {
+      margin-top: 1.6rem;
+    }
   }
+
+  &--linear {
+    color: $main-bg;
+    background-image: linear-gradient(to right, $btn-main-color 10%, $btn-second-color);
+  }
+  &--padding {
+    &-1 {
+      padding: 0.8rem 1.6rem;
+    }
+    &-2 {
+      padding: 1.6rem 2.4rem;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
 
   &__txt,
   &__icon {
@@ -47,14 +71,9 @@
   }
 
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(0.85);
   }
 
-  &--sm {
-    font-size: 1rem;
-    padding: 0.8rem 1.6rem;
-  }
-
-
-
+  
 }
+

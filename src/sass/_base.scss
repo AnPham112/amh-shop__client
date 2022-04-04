@@ -43,28 +43,44 @@ a {
   }
 }
 
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
 .main {
-  margin-top: $header-height;
-  background-color: $main-bg;
+  margin-top: calc(#{$header-height} + #{$border-width});
   margin-bottom:2rem;
   min-height:100vh;
+  background-color: $main-bg;
   @include tablet {
-    margin-top: calc(#{$header-tablet-height } + 20px);
+    margin-top: $header-tablet-height;
   }
   @include mobile {
-   margin-top: calc(#{$header-mobile-height } + 10px);
+   margin-top: $header-mobile-height;
   }
 }
 
 // Button color
 @each $color, $val in $colors {
+  .btn--bg-#{$color} {
+    background-color: $val;
+  }
   .btn--#{$color} {
-      background-color: $val;
+    color: $val;
   }
 }
 // Button shadow color 
 @each $color, $val in $colors {
   .btn-shadow--#{$color} {
-    box-shadow: 0px 0px 8px 6px $val;
+    box-shadow: 0 8px 16px $val;
   }
 }

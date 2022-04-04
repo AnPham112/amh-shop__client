@@ -1,137 +1,262 @@
+// .header {
+//   background-color: $main-bg;
+//   height: $header-height;
+//   position: fixed;
+//   top: 0;
+//   width: 100%;
+//   z-index: 20;
+//   border-bottom: 2px solid #5c6062;
+
+//   @include tablet {
+//     height: $header-tablet-height;
+//   }
+//   @include mobile {
+//     height: $header-mobile-height;
+//   }
+
+//   .container {
+//     height: 100%;
+//   }
+
+//   &__logo {
+//     @include flex(center, center);
+//     position: absolute;
+//     inset: 0;
+//     pointer-events: none;
+//     &-img {
+//       width: 65px;
+//       @include tablet {
+//         width: 5.5rem;
+//       }
+//       @include mobile {
+//         width: 4rem;
+//       }
+//     }
+//   }
+
+//   &__menu {
+//     @include flex(center, space-between);
+//     height: 100%;
+//     font-size: 1.6rem;
+
+//     &__mobile-toggle {
+//       display: none;
+//       @include tabletAndMobile {
+//         color: #bababa;
+//         padding: 6px 6px 6px 0;
+//       }
+//       @include tablet {
+//         display: block;
+        
+//       }
+//       @include mobile {
+//         display: block;
+//       }
+//     }
+
+
+//     &__item {
+//       color: $txt-main-color;
+//       @include mobile {
+//         font-size: 1.4rem;
+//       }
+//     }
+//     &__item  ~ &__item{
+//       margin-left: 3rem;
+//       @include mobile {
+//         margin-left: 1rem;
+//       }
+//     }
+//     &__item:hover {
+//       a {
+//         color: $main-color;
+//       }
+//     }
+//     &__item.active {
+//       font-weight: 600;
+//       color: $main-color;
+//     }
+
+//     &__center {
+//       &__logo-img {
+//         width: 6.5rem;
+//         @include tablet {
+//           width: 5.5rem;
+//         }
+//         @include mobile {
+//           width: 4rem;
+//         }
+//       }
+//     }
+//     &__left, &__right {
+//       flex: 1;
+//       height: 100%;
+//     }
+
+//     &__left {
+//       z-index: 30;
+//       @include flex(center, flex-start);
+//       &__close {
+//         display: none;
+//       }
+//       @include tabletAndMobile {
+//         flex-direction: column;
+//         background-color: $main-bg;
+//         position: absolute;
+//         inset: 0;
+//         height: 100vh;
+//         justify-content: flex-start;
+//         padding-top: 2rem;
+//         transform: translateX(-100%);
+//         transition: transform 0.5s ease;
+
+//         &.active {
+//           transform: translateX(0);
+//         }
+
+//         &__item ~ &__item {
+//           margin-left: unset;
+//           margin-top: 28px;
+//         }
+
+//         &__close {
+//           display: block;
+//           position: absolute;
+//           left: 22px;
+//           top: 19px;
+//           color: #bababa;
+//           padding: 6px 6px 6px 0;
+//           @include mobile {
+//             left: 12px;
+//             top: 10px;
+//           }
+//         }
+//       }
+//     }
+//     &__right {
+//       @include flex(center, flex-end);
+//       &__item {
+//         position: relative;
+//         @include tablet {
+//             margin-left: 10px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+
 .header {
   background-color: $main-bg;
-  height: $header-height;
+  min-height: $header-height;
   position: fixed;
   top: 0;
   width: 100%;
+  overflow: hidden;
   z-index: 20;
-  border-bottom: 2px solid #5c6062;
-  transition: height 0.3s ease;
-
-  @include tablet {
-    height: $header-tablet-height;
-  }
-  @include mobile {
-    height: $header-mobile-height;
-  }
-
-  .container {
-    height: 100%;
-  }
-
-  &.shrink {
-    height: $header-shrink-height;
-    z-index: 40;
-
-    @include mobile {
-      height: $header-mobile-height;
-    }
+  border-bottom: $border-width solid #7d7d7d;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    font-size: 1.4rem;
   }
 
   &__logo {
-    @include flex(center, center);
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+    flex: 1;
     &-img {
       width: 65px;
-      @include tablet {
-        width: 5.5rem;
-      }
-      @include mobile {
-        width: 4rem;
+    }
+    &--admin {
+      display: flex;
+      align-items: center;
+      color: $main-color;
+      h2 {
+        margin-left: 1.6rem;
       }
     }
   }
 
   &__menu {
-    @include flex(center, space-between);
-    height: 100%;
-    font-size: 1.6rem;
-
-    &__mobile-toggle {
-      display: none;
-      @include tabletAndMobile {
-        color: #bababa;
-        padding: 6px 6px 6px 0;
-      }
-      @include tablet {
-        display: block;
-        
-      }
-      @include mobile {
-        display: block;
-      }
-    }
-
-
     &__item {
-      color: $txt-main-color;
-    }
-    &__item  ~ &__item{
-      margin-left: 3rem;
-      @include mobile {
-        margin-left: 1rem;
-      }
-    }
-    
-    &__item.active {
-      font-weight: 600;
-      color: $main-color;
-    }
-    &__item:hover {
-      color: $main-color;
-    }
+      display: inline-block;
+      padding: 0 2rem;
+      &__link {
+        color: $txt-main-color;
 
-    &__left, &__right {
-      @include flex(center, center);
-      height: 100%;
-    }
-
-    &__left {
-      &__close {
-        display: none;
-      }
-      @include tabletAndMobile {
-        flex-direction: column;
-        background-color: $main-bg;
-        position: absolute;
-        inset: 0;
-        height: 100vh;
-        justify-content: flex-start;
-        padding-top: 2rem;
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-
-        &.active {
-          transform: translateX(0);
+        &:hover {
+          color: $main-color;
         }
 
-        &__item ~ &__item {
-          margin-left: unset;
-          margin-top: 28px;
-        }
+        &__login {
+          padding: 0.8rem 1.6rem;
+          outline: 1px solid $main-color;
+          color: $main-color;
+          border-radius: 0.3rem;
+          font-weight: 500;
 
-        &__close {
-          display: block;
-          position: absolute;
-          left: 22px;
-          top: 19px;
-          color: #bababa;
-          padding: 6px 6px 6px 0;
-          @include mobile {
-            left: 12px;
-            top: 10px;
+          &:hover {
+            opacity: 0.85;
+          }
+        }
+        &__register {
+          padding: 0.8rem 1.6rem;
+          background-color: $main-color;
+          color: $main-bg;
+          border-radius: 0.3rem;
+          font-weight: 500;
+
+          &:hover {
+            opacity: 0.85;
+          }
+        }
+        &__logout {
+          padding: 0.8rem 1.6rem;
+          background-color: $main-color;
+          color: $main-bg;
+          border-radius: 0.3rem;
+          
+
+          &:hover {
+            opacity: 0.85;
           }
         }
       }
     }
-    &__right {
-      &__item {
-        @include tablet {
-            margin-left: 10px;
+    &__bars {
+      display: none;
+    }
+    &__close {
+      display: none;
+    }
+
+    &__cart {
+      position: relative;
+      font-size: 2rem;
+     
+      span {
+        background-color: $btn-second-color;
+        position: absolute;
+        height: 1.8rem;
+        width: 1.8rem;
+        line-height: 1.8rem;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 1rem;
+        top: -0.8rem;
+        right: -0.5rem;
+        color: $main-bg;
+      }
+      &__icon {
+        color: #bababa;
+        &:hover {
+          color: $main-color;
         }
       }
+      
+
+
     }
   }
 }

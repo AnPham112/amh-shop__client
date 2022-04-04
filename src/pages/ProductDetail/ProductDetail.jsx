@@ -1,28 +1,52 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import ProductCard from '../../components/ProductCard';
 import ProductInfo from '../../components/ProductInfo';
+import { getAllProduct } from '../../redux/actions/productActions';
 
 function ProductDetail() {
-  const { id } = useParams();
-  const [product, setProduct] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    let isMounted = true;
-    axios.get(`/products/${id}`)
-      .then(res => {
-        if (!isMounted) return;
-        setProduct(res.data)
-      })
+    dispatch(getAllProduct())
+  }, [dispatch])
+  const params = useParams();
+  const [productDetail, setProductDetail] = useState([]);
 
-    return () => { isMounted = false }
-  }, [id])
+  const product = useSelector(state => state.product)
+  const { products } = product
+
+  useEffect(() => {
+    if (params) {
+      products.forEach((product) => {
+        if (product._id === params.id) {
+          setProductDetail(product)
+        }
+      })
+    }
+  }, [params.id, products])
+
+  if (productDetail.length === 0) return null
+
 
   return (
     <>
-      {product && <ProductInfo product={product} />}
+      {productDetail && <ProductInfo productDetail={productDetail} />}
+      <div className="container">
+        <h2 className="related-products__title">Related products</h2>
+        <div className="grid wide">
+          {/* <div className="row">
+            {products.map((product) => {
+              return product.category === productDetail.category
+                ? (
+                  <ProductCard key={product._id} product={product} />
+                ) : null
+            })}
+          </div> */}
+        </div>
+      </div>
     </>
-
   )
 }
 
