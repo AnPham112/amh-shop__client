@@ -8,6 +8,7 @@ import '../sass/index.scss'
 import Button from './Button'
 
 
+
 function Header() {
   const state = useContext(GlobalStateContext)
   const [isLogged, setIsLogged] = state.userAPI.isLogged

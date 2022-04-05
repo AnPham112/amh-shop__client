@@ -43,6 +43,19 @@ a {
   }
 }
 
+.container.full-screen {
+  height: calc(100vh - ((#{$header-height} + #{$border-width})));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include tablet {
+    height: calc(100vh - (#{$header-tablet-height} + #{$border-width}));
+  }
+  @include mobile {
+    height: calc(100vh - (#{$header-mobile-height} + #{$border-width}));
+  }
+}
+
 .loading {
   position: fixed;
   top: 0;
@@ -62,10 +75,10 @@ a {
   min-height:100vh;
   background-color: $main-bg;
   @include tablet {
-    margin-top: $header-tablet-height;
+    margin-top: calc(#{$header-tablet-height} + #{$border-width});
   }
   @include mobile {
-   margin-top: $header-mobile-height;
+   margin-top: calc(#{$header-mobile-height} + #{$border-width});
   }
 }
 

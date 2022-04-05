@@ -7,14 +7,17 @@ import store from './redux/store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStateProvider } from './GlobalState';
+import { NextUIProvider } from '@nextui-org/react';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStateProvider>
-        <App />
-        <ToastContainer />
+        <NextUIProvider>
+          <App />
+          <ToastContainer />
+        </NextUIProvider>
       </GlobalStateProvider>
     </Provider>
   </React.StrictMode>,

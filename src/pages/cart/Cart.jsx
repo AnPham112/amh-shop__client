@@ -3,11 +3,23 @@ import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import Helmet from '../../components/Helmet'
 import { GlobalStateContext } from '../../GlobalState'
+import { Text, Row } from '@nextui-org/react';
+import Modal from '../../components/Modal';
+import axios from 'axios';
+import Paypal from './Paypal';
 
 function Cart() {
   const state = useContext(GlobalStateContext);
   const [cart, setCart] = state.userAPI.cart
+  const token = state.token;
   const [total, setTotal] = useState(0)
+
+  const addToCart = async () => {
+    await axios.patch('/user/addcart', { cart }, {
+      headers: { Authorization: token }
+    })
+  }
+
 
 
   useEffect(() => {
@@ -27,6 +39,7 @@ function Cart() {
       }
     })
     setCart([...cart])
+    addToCart()
   }
 
   const decrement = (id) => {
@@ -36,17 +49,17 @@ function Cart() {
       }
     })
     setCart([...cart])
+    addToCart()
   }
 
-  const removeProduct = (id) => {
-    if (window.confirm("Do you want to delete this product?")) {
-      cart.forEach((item, index) => {
-        if (item._id === id) {
-          cart.splice(index, 1)
-        }
-      })
-      setCart([...cart])
-    }
+  const handleRemoveProduct = (id) => {
+    cart.forEach((item, index) => {
+      if (item._id === id) {
+        cart.splice(index, 1)
+      }
+    })
+    setCart([...cart])
+    addToCart()
   }
 
   if (cart.length === 0)
@@ -63,7 +76,6 @@ function Cart() {
                 </div>
                 <div className="cart__item__info">
                   <h2>{item.title}</h2>
-                  {/* <h6>#id: {item.product_id}</h6> */}
                   <span>${item.price * item.quantity}</span>
                   <p>{item.description}</p>
                   <p>{item.content}</p>
@@ -75,17 +87,15 @@ function Cart() {
                 <span>{item.quantity}</span>
                 <button onClick={() => increment(item._id)}>+</button>
               </div>
-              <div onClick={() => removeProduct(item._id)}>X</div>
+              <div onClick={() => handleRemoveProduct(item._id)}>X</div>
             </div>
           </div>
         ))}
         <div className='cart__total'>
           <h3>Total: ${total}</h3>
-          <Link to="#!">Payment</Link>
+          <Paypal />
         </div>
-
       </div>
-
     </Helmet >
   )
 }

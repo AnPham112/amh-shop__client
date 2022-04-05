@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { addToCart } from '../redux/actions/userActions';
 
 function UserAPI(token) {
-  const dispatch = useDispatch();
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cart, setCart] = useState([]);
