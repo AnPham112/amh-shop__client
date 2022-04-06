@@ -6,7 +6,7 @@ import { GlobalStateContext } from '../../GlobalState'
 import { Text, Row } from '@nextui-org/react';
 import Modal from '../../components/Modal';
 import axios from 'axios';
-import Paypal from './Paypal';
+import PaypalButton from './Paypal';
 
 function Cart() {
   const state = useContext(GlobalStateContext);
@@ -19,8 +19,6 @@ function Cart() {
       headers: { Authorization: token }
     })
   }
-
-
 
   useEffect(() => {
     const getTotal = () => {
@@ -62,6 +60,10 @@ function Cart() {
     addToCart()
   }
 
+  const tranSuccess = async (payment) => {
+    console.log(payment)
+  }
+
   if (cart.length === 0)
     return (<h2>Cart empty</h2>)
   return (
@@ -93,7 +95,10 @@ function Cart() {
         ))}
         <div className='cart__total'>
           <h3>Total: ${total}</h3>
-          <Paypal />
+          <PaypalButton
+            total={total}
+            tranSuccess={tranSuccess}
+          />
         </div>
       </div>
     </Helmet >

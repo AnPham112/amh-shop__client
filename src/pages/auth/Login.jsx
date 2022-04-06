@@ -1,124 +1,101 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-// import Button from '../../components/Button'
-import { login } from '../../redux/actions/authActions';
 import { Link } from 'react-router-dom'
-import { ThreeDots } from "react-loader-spinner";
-import { Card, Text, Input, Spacer, Button } from '@nextui-org/react'
+import { Card, Text, Input, Spacer, Button, Row, Loading } from '@nextui-org/react'
+import { login } from '../../redux/actions/authActions';
+import { useForm, Controller } from "react-hook-form";
+import { EMAIL_REGEX } from '../../utils/validate';
 
 function Login() {
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth);
-  const { loading } = auth;
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    }
+  });
 
-  const [user, setUser] = useState({
-    email: '', password: ''
-  })
-
-  const handleChangeInput = e => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value })
-  }
-
-  const handleLogin = (e) => {
-    e.preventDefault()
+  const onSubmit = (user) => {
     dispatch(login(user))
-  }
+    reset({
+      email: "",
+      password: ""
+    })
+  };
 
+  const { loading } = useSelector(state => state.auth);
   return (
     <>
-      {/* <div className="auth-form">
-        <div className="auth-form__wrapper">
-          <form
-            autoComplete="off"
-            onSubmit={handleLoginSubmit}
-          >
-            <h2>Login</h2>
-            <div className="auth-form__field">
-              <label htmlFor="email">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter email..."
-                value={user.email}
-                onChange={onChangeInput}
-                autoComplete='off'
-              />
-            </div>
-            <div className="auth-form__field">
-              <label htmlFor="password">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter password..."
-                value={user.password}
-                onChange={onChangeInput}
-                autoComplete='off'
-              />
-            </div>
-            <Button
-              type="submit"
-              bg="blue"
-              color="white"
-              padding={1}
-              full="width"
-            >
-              Login
-            </Button>
-            <p>Are you have an account? <Link to="/register">Register</Link></p>
-          </form>
-        </div>
-      </div> */}
       <div className="container full-screen">
-        <Card css={{ mw: '400px' }}>
-          <Card.Header css={{ jc: "center" }}>
-            <Text h3>Login</Text>
-          </Card.Header>
-          <Card.Body
-          // css={{ py: "$8" }}
-          >
-            <Input
-              clearable
-              label="Email"
-              placeholder="Enter email..."
-              type="email"
+        <Card css={{ mw: "450px" }}>
+          <Text h3 css={{ ta: "center" }}>Login</Text>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Spacer y={1} />
+            <Controller
               name="email"
-              value={user?.email}
-              onChange={handleChangeInput}
+              control={control}
+              rules={{
+                required: "Email is required",
+                pattern: { value: EMAIL_REGEX, message: "Email is invalid" }
+              }}
+              render={({ field: { value, onChange, onBlur }, fieldState: { error } }) =>
+                <Input
+                  clearable
+                  css={{ w: "100%" }}
+                  rounded
+                  bordered
+                  label="Email"
+                  placeholder="Email..."
+                  color="default"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  helperColor="error"
+                  helperText={error?.message}
+                />
+              }
             />
-            <Spacer y={0.5} />
-            <Input.Password
-              clearable
-              label="Password"
-              placeholder="Enter password..."
+
+            <Spacer y={1} />
+            <Controller
               name="password"
-              value={user?.password}
-              onChange={handleChangeInput}
+              control={control}
+              rules={{
+                required: "Password is required",
+                minLength: { value: 6, message: "Password must be at least 6 characters" }
+              }}
+              render={({ field: { value, onChange, onBlur }, fieldState: { error } }) =>
+                <Input.Password
+                  clearable
+                  css={{ w: "100%" }}
+                  rounded
+                  bordered
+                  label="Password"
+                  placeholder="Password..."
+                  color="default"
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  helperColor="error"
+                  helperText={error?.message}
+                />
+              }
             />
-            <Spacer y={0.5} />
-            <Button onClick={handleLogin}>Login</Button>
-          </Card.Body>
-          <Card.Footer css={{ dflex: "center" }}>
+            <Spacer y={1} />
+            <Button type="submit" css={{ w: "100%" }}>Login</Button>
+          </form>
+          <Spacer y={1} />
+          <Row justify="center">
             <Text css={{ mr: "6px" }}>Are you have an account?</Text>
             <Link to="/register">Register</Link>
-          </Card.Footer>
+          </Row>
         </Card>
-      </div>
-
-
-
-      {
-        loading
-          ? <div className="loading">
-            <ThreeDots width="100" color="#FFF" />
+        {loading ?
+          <div className="loading">
+            <Loading color="white" size="lg" />
           </div>
-          : null
-      }
+          : null}
+      </div>
 
     </>
   )
