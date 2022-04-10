@@ -1,4 +1,4 @@
-import { GET_USER } from "../actions/constants"
+import { GET_USER } from "../constants"
 
 const initState = {
   userInfo: {

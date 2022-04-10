@@ -1,17 +1,16 @@
-import { HIDE_LOADER, REFRESH_TOKEN, SHOW_LOADER } from "../actions/constants"
+import { HIDE_LOADER, REFRESH_TOKEN, SHOW_LOADER } from "../constants"
 
 const initState = {
-  accesstoken: "",
   loading: false
 }
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case REFRESH_TOKEN:
-      return {
-        ...state,
-        accesstoken: action.payload.accesstoken
-      }
+    // case REFRESH_TOKEN:
+    //   return {
+    //     ...state,
+    //     accesstoken: action.payload.accesstoken
+    //   }
     case SHOW_LOADER:
       return {
         ...state,

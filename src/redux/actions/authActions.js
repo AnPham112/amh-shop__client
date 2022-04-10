@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HIDE_LOADER, REFRESH_TOKEN, SHOW_LOADER } from "./constants";
+import { HIDE_LOADER, REFRESH_TOKEN, SHOW_LOADER } from "../constants";
 import { toast } from 'react-toastify';
 import swal from 'sweetalert2';
 
@@ -8,7 +8,6 @@ export const login = (user) => {
     dispatch({ type: SHOW_LOADER })
     try {
       const res = await axios.post('/user/login', { ...user })
-      localStorage.setItem('firstLogin', true)
       window.location.href = "/"
 
       if (res.status === 200) {
@@ -30,25 +29,7 @@ export const register = (user) => {
   return async (dispatch) => {
     try {
       await axios.post('/user/register', { ...user })
-      localStorage.setItem('firstLogin', true)
       window.location.href = "/"
-    } catch (err) {
-      console.log(err)
-    }
-  }
-}
-
-export const refreshToken = () => {
-  return async (dispatch) => {
-    try {
-      const res = await axios.get('/user/refresh_token')
-      if (res.status === 200) {
-        const { accesstoken } = res.data
-        dispatch({
-          type: REFRESH_TOKEN,
-          payload: { accesstoken }
-        })
-      }
     } catch (err) {
       console.log(err)
     }
@@ -59,7 +40,6 @@ export const logout = () => {
   return async (dispatch) => {
     try {
       await axios.post('/user/logout')
-      localStorage.clear()
       window.location.href = "/";
     } catch (error) {
       console.log(error)

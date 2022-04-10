@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_USER } from "./constants"
+import { GET_USER } from "../constants"
 
 // export const getUser = (token) => {
 //   return async (dispatch) => {

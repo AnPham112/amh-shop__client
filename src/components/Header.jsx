@@ -11,8 +11,8 @@ import Button from './Button'
 
 function Header() {
   const state = useContext(GlobalStateContext)
-  const [isLogged, setIsLogged] = state.userAPI.isLogged
-  const [isAdmin, setIsAdmin] = state.userAPI.isAdmin
+  const [isLogged] = state.userAPI.isLogged
+  const [isAdmin] = state.userAPI.isAdmin
   const [cart] = state.userAPI.cart
   const dispatch = useDispatch();
 
@@ -47,10 +47,10 @@ function Header() {
             {isAdmin ? (
               <>
                 <li className="header__menu__item">
-                  <Link to="/" className="header__menu__item__link">Create product</Link>
+                  <Link to="/create_product" className="header__menu__item__link">Create product</Link>
                 </li>
                 <li className="header__menu__item">
-                  <Link to="/" className="header__menu__item__link">Categories</Link>
+                  <Link to="/category" className="header__menu__item__link">Categories</Link>
                 </li>
               </>
             )
@@ -60,7 +60,7 @@ function Header() {
             {isLogged ? (
               <>
                 <li className="header__menu__item">
-                  <Link to="/" className="header__menu__item__link">History</Link>
+                  <Link to="/history" className="header__menu__item__link">History</Link>
                 </li>
                 <li className="header__menu__item">
                   <Button

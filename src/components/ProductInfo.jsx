@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-function ProductInfo({ productDetail }) {
+function ProductInfo({ productDetail, addCart }) {
   return (
     <div className="container">
       <div className="product-info">
@@ -18,18 +18,12 @@ function ProductInfo({ productDetail }) {
           <p className="product-info__detail__sold">Sold: {productDetail.sold}</p>
           <div className="product-info__detail__actions">
             <Button
-              backgroundcolor="pink"
-              shadowcolor="pink"
-              color="white"
-            >
-              Add to cart
-            </Button>
-            <Button
               backgroundcolor="red"
               shadowcolor="red"
               color="white"
+              onClick={() => addCart(productDetail)}
             >
-              Buy
+              Buy now
             </Button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_PRODUCTS } from "./constants";
+import { GET_ALL_PRODUCTS } from "../constants";
 
 export const getAllProduct = () => {
   return async (dispatch) => {

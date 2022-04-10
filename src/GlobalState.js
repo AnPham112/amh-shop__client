@@ -1,30 +1,30 @@
-import React, { createContext, useEffect } from 'react'
+import axios from 'axios'
+import React, { createContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductAPI from './api/ProductAPI'
 import UserAPI from './api/UserAPI'
-import { refreshToken } from './redux/actions/authActions'
 
 const GlobalStateContext = createContext()
 
 function GlobalStateProvider({ children }) {
-  const dispatch = useDispatch()
+  const [token, setToken] = useState("");
 
   useEffect(() => {
-    const firstLogin = localStorage.getItem('firstLogin')
-    if (firstLogin) {
-      dispatch(refreshToken())
+    const refreshToken = async () => {
+      const res = await axios.get('/user/refresh_token')
+      setToken(res.data.accesstoken)
+      setTimeout(() => {
+        refreshToken()
+      }, 10 * 60 * 1000)
     }
-  }, [dispatch])
+    refreshToken()
+  }, [])
 
-  const auth = useSelector(state => state.auth);
-
-  const { accesstoken: token } = auth
 
   const state = {
     token: [token],
     productAPI: ProductAPI(),
     userAPI: UserAPI(token),
-    // categoriesAPI: CategoriesAPI()
   }
 
   return (

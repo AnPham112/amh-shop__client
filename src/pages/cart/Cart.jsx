@@ -7,6 +7,7 @@ import { Text, Row } from '@nextui-org/react';
 import Modal from '../../components/Modal';
 import axios from 'axios';
 import PaypalButton from './Paypal';
+import { toast } from 'react-toastify';
 
 function Cart() {
   const state = useContext(GlobalStateContext);
@@ -14,7 +15,7 @@ function Cart() {
   const token = state.token;
   const [total, setTotal] = useState(0)
 
-  const addToCart = async () => {
+  const addToCart = async (cart) => {
     await axios.patch('/user/addcart', { cart }, {
       headers: { Authorization: token }
     })
@@ -37,7 +38,7 @@ function Cart() {
       }
     })
     setCart([...cart])
-    addToCart()
+    addToCart(cart)
   }
 
   const decrement = (id) => {
@@ -47,7 +48,7 @@ function Cart() {
       }
     })
     setCart([...cart])
-    addToCart()
+    addToCart(cart)
   }
 
   const handleRemoveProduct = (id) => {
@@ -61,7 +62,15 @@ function Cart() {
   }
 
   const tranSuccess = async (payment) => {
-    console.log(payment)
+    const { paymentID, address } = payment
+
+    await axios.post('/api/payment', { cart, paymentID, address }, {
+      headers: { Authorization: token }
+    })
+
+    setCart([])
+    addToCart([])
+    toast.success("You have placed an order successfully!")
   }
 
   if (cart.length === 0)
