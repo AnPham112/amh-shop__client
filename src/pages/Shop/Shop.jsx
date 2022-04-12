@@ -2,13 +2,12 @@ import React, { useContext } from 'react'
 import Helmet from '../../components/Helmet'
 import ProductCard from '../../components/ProductCard'
 import { GlobalStateContext } from '../../GlobalState'
-import { Loading } from '@nextui-org/react'
+import { Card, Loading, Text } from '@nextui-org/react'
 
 function Shop() {
   const state = useContext(GlobalStateContext)
   const [products] = state.productAPI.products
   const [isAdmin] = state.userAPI.isAdmin
-
 
   return (
     <Helmet title="Shop">
@@ -16,7 +15,7 @@ function Shop() {
         <div className="container">
           <div className="grid wide">
             <div className="row">
-              {products.length === 0 && <Loading color="white" className="loading" />}
+
               {products ? products.map((product) => (
                 (
                   <ProductCard key={product._id} product={product} isAdmin={isAdmin} />
@@ -26,7 +25,15 @@ function Shop() {
           </div>
         </div>
       </div>
-    </Helmet>
+      {products.length === 0 &&
+        <div className="container full-screen">
+          <Card css={{ mw: "450px" }}>
+            <Text h3 css={{ ta: "center" }}>No products exist</Text>
+          </Card>
+        </div>
+
+      }
+    </Helmet >
   )
 }
 

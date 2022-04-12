@@ -1,8 +1,9 @@
-import { GET_CATEGORIES } from "../constants"
+import { GET_CATEGORIES, HIDE_LOADER, SHOW_LOADER } from "../constants"
 
 
 const initState = {
-  categories: null
+  categories: null,
+  loading: false
 }
 
 const categoryReducer = (state = initState, action) => {
@@ -11,6 +12,16 @@ const categoryReducer = (state = initState, action) => {
       return {
         ...state,
         categories: action.payload
+      }
+    case SHOW_LOADER:
+      return {
+        ...state,
+        loading: true
+      }
+    case HIDE_LOADER:
+      return {
+        ...state,
+        loading: false
       }
     default:
       return state

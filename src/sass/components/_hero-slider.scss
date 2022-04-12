@@ -1,14 +1,14 @@
 .hero-slider {
-  height: 90vh;
+  height: calc(100vh - #{$header-height});
   max-height: 1080px;
   overflow: hidden;
   position: relative;
 
   @include tablet {
-    margin-top: $header-tablet-height;
+    height: calc(100vh - #{$header-tablet-height});
   }
   @include mobile {
-    margin-top: $header-mobile-height;
+    height: calc(100vh - #{$header-mobile-height});
   }
 
   &__item {
@@ -18,16 +18,14 @@
     pointer-events: none;
     position: absolute;
     inset: 0;
-    background-color: transparent;
 
     @include tabletAndMobile {
       flex-direction: column-reverse;
-      padding-top: $header-tablet-height;
     }
 
     @include mobile {
-      padding-top: $header-mobile-height;
-      padding-bottom: $header-mobile-height;
+      padding-top: 0;
+      // padding-bottom: $header-mobile-height;
     }
 
     &.active {
@@ -38,41 +36,45 @@
 
     &__info {
       width: 58%;
-
       @include tabletAndMobile {
         width: 100%;
         flex-grow: 1;
-        margin-top: 3rem;
+        margin-top: 1rem;
       }
-      &__title,
-      &__description {
-        margin-bottom: 50px;
+      &__title {
+        margin-bottom: 2.8rem;
         @include tabletAndMobile {
-          margin-bottom: 2rem;
+          margin-bottom: 1.8rem;
+        }
+      }
+
+      &__description {
+        margin-bottom: 2rem;
+        @include tabletAndMobile {
+          margin-bottom: 1.8rem;
         }
       }
       &__title {
         font-family: 'Roboto', sans-serif;
         font-weight: 600;
-        font-size: 5rem;
-        background: linear-gradient(to right, #efdf9a 8%, #f78b7c 92%);
+        font-size: 3rem;
+        background: linear-gradient(to right, #efdf9a 6%, #f78b7c 92%);
         -webkit-background-clip: text;
       	-webkit-text-fill-color: transparent;
-        line-height: 7rem;
         overflow: hidden;
         @include mobile {
-          font-size: 3rem;
-          line-height: 3.5rem;
+          font-size: 2.5rem;
+          text-align: center;
         }
       }
       &__description {
         color: $txt-main-color;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         line-height: 2.5rem;
         overflow: hidden;
         @include mobile {
-          font-size: 1.2rem;
-          line-height: 1.6rem;
+          font-size: 1rem;
+          text-align: center;
         }
       }
 
@@ -93,26 +95,17 @@
     &__image {
       flex-grow: 1;
       position: relative;
-      height: 100%;
+      height: 96%;
       pointer-events: none;
-
       @include tablet {
-        width: 100%;
-        height: 50%;
-        @include flex(center, center);
-        flex-grow: unset;
-        z-index: 10;
+        height: 46%;
       }
       @include mobile {
-        width: 100%;
-        height: 48%;
-        @include flex(center, center);
-        flex-grow: unset;
-        z-index: 10;
+       height: 36%;
       }
 
       img {
-        height: 94vh;
+        height: 84vh;
         position: absolute;
         bottom: 0;
         right: 0;
@@ -126,7 +119,7 @@
       }
 
       .shape {
-        $size: 430px;
+        $size: 450px;
         height: $size;
         width: $size;
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
@@ -140,7 +133,7 @@
           background-color: #f78b7c;
         }
 
-        @include tabletAndMobile {
+        @include tablet {
           $size: 22rem;
           height: $size;
           width: $size;
@@ -149,9 +142,12 @@
           transform: translate(50%, -50%);
         }
         @include mobile {
-          $size: 12rem;
+          $size: 14rem;
           height: $size;
           width: $size;
+          top: 50%;
+          right: 50%;
+          transform: translate(50%, -50%);
         }
       }
     }
@@ -165,7 +161,7 @@
   &__control {
     @include flex(center, center);
     position: absolute;
-    bottom: 50px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     &__item ~ &__item {
@@ -173,13 +169,21 @@
     }
     &__item {
       @include flex(center, center);
-      font-size: 2rem;
+      font-size: 1.6rem;
       cursor: pointer;
       color: #bababa;
 
       &-action:hover {
         color: $main-color;
       }
+    }
+    // @include mobile {
+    //   bottom: 0;
+    // }
+  }
+  &__shop__button {
+    @include mobile {
+      width: 100%;
     }
   }
 }

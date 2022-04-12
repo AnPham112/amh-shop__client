@@ -32,11 +32,7 @@ function OrderHistory() {
   return (
     <div className='order-history'>
       <h2>History</h2>
-
-
       <h4>You have {history.length} ordered</h4>
-
-
       <table>
         <thead>
           <tr>

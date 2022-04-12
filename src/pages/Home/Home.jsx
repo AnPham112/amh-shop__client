@@ -43,9 +43,9 @@ function Home() {
         </SectionBody>
       </Section>
       {/* End policy section */}
-      <Section>
+      {/* <Section>
         <SectionTitle>Aloo</SectionTitle>
-      </Section>
+      </Section> */}
     </Helmet>
   )
 }

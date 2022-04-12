@@ -18,7 +18,7 @@ function ProductDetail() {
   const addCart = state.userAPI.addCart
   const [productDetail, setProductDetail] = useState([]);
 
-
+  console.log('params.id', params.id);
 
   useEffect(() => {
     if (params.id) {
@@ -28,7 +28,10 @@ function ProductDetail() {
         }
       })
     }
+
+    return () => setProductDetail([])
   }, [params.id, products])
+
 
   if (productDetail.length === 0) return null
 

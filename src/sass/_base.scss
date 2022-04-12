@@ -8,9 +8,9 @@
   user-select: none; //not allow to select text
 }
 
-html {
-  font-size: 62.5%;
-}
+// html {
+//   // font-size: 62.5%;
+// }
 
 body {
   font-family: "Roboto", sans-serif;
@@ -71,7 +71,6 @@ a {
 
 .main {
   margin-top: calc(#{$header-height} + #{$border-width});
-  margin-bottom:2rem;
   min-height:100vh;
   background-color: $main-bg;
   @include tablet {

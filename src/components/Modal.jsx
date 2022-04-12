@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Row, Text, Button } from '@nextui-org/react'
 
-function NewModal({ open, onClose, onRemoveProduct }) {
+function NewModal({ open, onClose, title, onDeleteProduct, productId }) {
   return (
     <Modal
       open={open}
@@ -10,12 +10,12 @@ function NewModal({ open, onClose, onRemoveProduct }) {
       onClose={onClose}
     >
       <Modal.Header>
-        <Text>Do you want to delete this product?</Text>
+        <Text>{title}</Text>
       </Modal.Header>
       <Modal.Footer>
         <Row justify='space-between' align='center'>
           <Button auto onClick={onClose}>Close</Button>
-          <Button auto onClick={onRemoveProduct}>Yes</Button>
+          <Button auto onClick={() => onDeleteProduct(productId)}>Yes</Button>
         </Row>
       </Modal.Footer>
     </Modal>

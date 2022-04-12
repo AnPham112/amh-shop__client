@@ -13,7 +13,8 @@ import { GlobalStateContext } from './GlobalState'
 import OrderHistory from './pages/OrderHistory/OrderHistory'
 import OrderDetails from './pages/OrderHistory/OrderDetails'
 import Categories from './pages/Categories/Categories'
-import CreateProduct from './pages/createProduct.js/CreateProduct'
+import CreateProduct from './pages/createProduct/CreateProduct'
+import EditProduct from './pages/editProduct/EditProduct'
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 
             <Route path="category" element={isAdmin ? <Categories /> : <NotFound />} />
             <Route path="create_product" element={isAdmin ? <CreateProduct /> : <NotFound />} />
+            <Route path="edit_product/:id" element={isAdmin ? <CreateProduct /> : <NotFound />} />
 
             <Route path="history" element={isLogged ? <OrderHistory /> : <NotFound />} />
             <Route path="history/:id" element={isLogged ? <OrderDetails /> : <NotFound />} />
@@ -44,8 +46,10 @@ function App() {
 
             <Route path="*" element={<NotFound />} />
           </Routes>
+
+          <Footer />
         </div>
-        <Footer />
+
       </div>
     </BrowserRouter>
   );

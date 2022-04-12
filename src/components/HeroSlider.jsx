@@ -1,6 +1,6 @@
+import { Button } from "@nextui-org/react";
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ButtonLinearGradient } from './Button';
 
 function HeroSlider(props) {
   const { data, control } = props;
@@ -35,28 +35,24 @@ function HeroSlider(props) {
   return (
     <div className="container">
       <div className="hero-slider">
-        {
-          data.map((item, index) => (
-            <HeroSliderItem key={index} item={item} active={index === activeSlide} />
-          ))
-        }
-        {
-          control ? (
-            <div className="hero-slider__control">
-              <div className="hero-slider__control__item hero-slider__control__item-action" onClick={prevSlide}>
-                <i className="fa-solid fa-angle-left"></i>
-              </div>
-              <div className="hero-slider__control__item">
-                <div className="index">
-                  {activeSlide + 1}/{data.length}
-                </div>
-              </div>
-              <div className="hero-slider__control__item hero-slider__control__item-action" onClick={nextSlide}>
-                <i className="fa-solid fa-angle-right"></i>
+        {data.map((item, index) => (
+          <HeroSliderItem key={index} item={item} active={index === activeSlide} />
+        ))}
+        {control ? (
+          <div className="hero-slider__control">
+            <div className="hero-slider__control__item hero-slider__control__item-action" onClick={prevSlide}>
+              <i className="fa-solid fa-angle-left"></i>
+            </div>
+            <div className="hero-slider__control__item">
+              <div className="index">
+                {activeSlide + 1}/{data.length}
               </div>
             </div>
-          ) : null
-        }
+            <div className="hero-slider__control__item hero-slider__control__item-action" onClick={nextSlide}>
+              <i className="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   )
@@ -74,12 +70,19 @@ function HeroSliderItem({ item, active }) {
         </div>
         <div className="hero-slider__item__info__btn">
           <Link to={item.path}>
-            <ButtonLinearGradient
-              icon="cart-plus"
-              animate={true}
+            <Button
+              css={{
+                linearGradient: "45deg, #efdf9a 0%, #f78b7c 50%",
+                zIndex: 1,
+                py: '24px',
+                color: "#181e21",
+                textTransform: 'uppercase'
+              }}
+              icon={<i className="fa-solid fa-cart-plus"></i>}
+              className="hero-slider__shop__button"
             >
               Shop now
-            </ButtonLinearGradient>
+            </Button>
           </Link>
         </div>
       </div>

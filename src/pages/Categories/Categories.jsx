@@ -13,9 +13,6 @@ function Categories() {
     dispatch(getAllCategories())
   }, [dispatch])
 
-  const { categories } = useSelector(state => state.category)
-  console.log('categories', categories)
-
   const [category, setCategory] = useState('')
   const [onEdit, setOnEdit] = useState(false)
   const [id, setId] = useState('')
@@ -24,8 +21,10 @@ function Categories() {
     e.preventDefault()
     if (onEdit) {
       dispatch(editCategory(id, { name: category }, token))
+      dispatch(getAllCategories())
     } else {
       dispatch(createCategory({ name: category }, token))
+      dispatch(getAllCategories())
     }
   }
 
@@ -37,7 +36,10 @@ function Categories() {
 
   const handleDeleteCategory = (id) => {
     dispatch(deleteCategory(id, token))
+    dispatch(getAllCategories())
   }
+
+  const { categories } = useSelector(state => state.category)
 
   return (
     <div className='categories'>
@@ -46,7 +48,7 @@ function Categories() {
         <input type="text" name="category" value={category}
           onChange={(e) => setCategory(e.target.value)}
           required />
-        <Button type='submit'>{onEdit ? 'Update' : 'Save'}</Button>
+        <Button type='submit'>{onEdit ? 'Update' : 'Create'}</Button>
       </form>
 
       <div>

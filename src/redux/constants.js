@@ -14,3 +14,4 @@ export const GET_ALL_PRODUCTS = 'get_all_products'
 
 //Categories
 export const GET_CATEGORIES = 'get_categories'
+export const CREATE_PRODUCT = 'create_product'
