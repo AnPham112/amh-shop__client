@@ -1,33 +1,27 @@
 .product-item {
   width: 100%;
-  // padding: 16px;
   overflow: hidden;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  background-color: rgb(153, 153, 153);
-  box-shadow: 8px 8px 20px rgba(92, 96, 98, 0.9),
-  -8px -8px 20px rgba(92, 96, 98, 0.2),
-  inset -4px -4px 10px rgba(92, 96, 98, 0.6);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 8px 8px 20px rgba(92, 96, 98, 0.9), -8px -8px 20px rgba(92, 96, 98, 0.2),
+    inset -4px -4px 10px rgba(92, 96, 98, 0.6);
   position: relative;
   transition: transform 0.3s ease;
   margin-bottom: 0.8rem;
   &:hover {
     transform: translateY(-0.1rem);
   }
-  &__img {
-    width: 100%;
-    text-align: center;
+  img {
+    width: 300px;
+    height: 300px;
     display: block;
     object-fit: cover;
-    border-bottom-left-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
-    img {
-      width: 100%;
-      @include mobile {
-        width: 80%;
-      }
-    }
-   
+    margin: 0 auto;
+  }
+
+  @include mobile {
+    box-shadow: none;
   }
   &__info {
     padding: 0 1.6rem;
@@ -40,12 +34,14 @@
       white-space: nowrap;
       text-transform: capitalize;
       cursor: pointer;
+      font-weight: 600;
     }
     &__price {
       margin-top: 0.8rem;
       display: block;
       font-size: 1.4rem;
       color: #f53838;
+      font-weight: 500;
     }
     &__description {
       margin-top: 0.8rem;
@@ -60,14 +56,28 @@
 
   &__actions {
     padding: 1.6rem;
-    @include pc {
-      @include flex(center, space-between);
+    @include flex(center, space-between);
+    &__view__btn {
+      display: block;
+      background-color: #0070f3;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-align: center;
     }
-    @include tablet {
-      @include flex(center, space-between);
+    &__view__btn,
+    &__buy__btn {
+      @include mobile {
+        width: 100%;
+      }
+    }
+    @include mobile {
+      flex-direction: column;
+      &__view__btn {
+        margin-top: 10px;
+      }
     }
   }
-
   input {
     position: absolute;
     width: 20px;

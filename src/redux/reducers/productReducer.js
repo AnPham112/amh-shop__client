@@ -1,4 +1,4 @@
-import { CREATE_PRODUCT, GET_ALL_PRODUCTS } from "../constants"
+import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCTS, UPDATE_PRODUCT } from "../constants"
 
 const initState = {
   products: [],
@@ -24,7 +24,24 @@ const productReducer = (state = initState, action) => {
     case CREATE_PRODUCT:
       return {
         ...state,
-        product: action.payload
+        products: [action.payload, ...state.products]
+      }
+    case UPDATE_PRODUCT:
+      const newProduct = state.products.map(product => (
+        product._id === action.payload._id
+          ? action.payload
+          : product
+      ))
+      return {
+        ...state,
+        products: newProduct
+      }
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(product => (
+          product._id !== action.payload
+        ))
       }
     default:
       return state

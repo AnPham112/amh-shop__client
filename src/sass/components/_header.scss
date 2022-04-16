@@ -4,9 +4,8 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  // overflow: hidden;
+  padding-left: 50px;
+  padding-right: 50px;
   z-index: 300;
   border-bottom: $border-width solid $main-color;
   @include tabletAndMobile {
@@ -49,6 +48,11 @@
     }
     &-img {
       width: 65px;
+      @include mobile {
+        width: 60px;
+        position: relative;
+        top: 3px;
+      }
     }
     &--admin {
       display: flex;

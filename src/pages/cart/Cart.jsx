@@ -74,40 +74,75 @@ function Cart() {
   }
 
   if (cart.length === 0)
-    return (<h2>Cart empty</h2>)
+    return (
+      <div className="container full-screen">
+        <Text h3 color="white">Cart empty</Text>
+      </div>
+    )
+
   return (
     <Helmet title="Cart">
       <div className="container">
-        {cart.map((item) => (
-          <div key={item._id} className="cart" style={{ paddingTop: '40px', borderBottom: '1px solid #fff' }}>
-            <div className="cart__item" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ display: 'flex' }}>
-                <div style={{ width: '100px' }}>
-                  <img src={item.images.url} alt="" style={{ width: '100%' }} />
-                </div>
-                <div className="cart__item__info">
-                  <h2>{item.title}</h2>
-                  <span>${item.price * item.quantity}</span>
-                  <p>{item.description}</p>
-                  <p>{item.content}</p>
-                  <p>Sold: {item.sold}</p>
-                </div>
-              </div>
-              <div className="cart__amount">
-                <button onClick={() => decrement(item._id)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => increment(item._id)}>+</button>
-              </div>
-              <div onClick={() => handleRemoveProduct(item._id)}>X</div>
-            </div>
+        <div className="cart">
+          <table class="cart__table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th className="cart__table__heading__qty">Quantity</th>
+                <th></th>
+              </tr>
+            </thead>
+            {
+              cart.map((item) => (
+                <tbody>
+                  <tr>
+                    <td className="cart__table__item__info__box">
+                      <div className="cart__table__item__info">
+                        {
+                          item.productImages?.length &&
+                          <div className="cart__table__item__info__image__container">
+                            <img src={item.productImages[0].url} alt={item.productImages[0].url} />
+                          </div>
+                        }
+                        <span className="cart__table__item__info__title">{item.title}</span>
+                      </div>
+                    </td>
+                    <td className="cart__table__item__info__description__box"
+                    ><span className="cart__table__item__info__description">{item.description}</span></td>
+                    <td className="cart__table__item__info__price__box"
+                    ><span className="cart__table__item__info__price">${item.price * item.quantity}</span></td>
+                    <td className="cart__table__item__info__quantity__control__box"
+                    >
+                      <div className="cart__table__item__quantity__control">
+                        <button onClick={() => decrement(item._id)}>-</button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => increment(item._id)}>+</button>
+                      </div>
+                    </td>
+                    <td>
+                      <div style={{ textAlign: "center" }} onClick={() => handleRemoveProduct(item._id)}>
+                        <i className="fa-solid fa-trash-can cart__table__item__icon"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+            }
+            <tfoot className="cart__total">
+              <tr>
+                <td colSpan="4">Total:</td>
+                <td className="cart__total__price">${total}</td>
+              </tr>
+            </tfoot>
+          </table>
+          <div className="cart__payment">
+            <PaypalButton
+              total={total}
+              tranSuccess={tranSuccess}
+            />
           </div>
-        ))}
-        <div className='cart__total'>
-          <h3>Total: ${total}</h3>
-          <PaypalButton
-            total={total}
-            tranSuccess={tranSuccess}
-          />
         </div>
       </div>
     </Helmet >

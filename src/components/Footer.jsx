@@ -9,7 +9,7 @@ function Footer() {
       <div className="footer">
         <div className="grid wide">
           <div className="row" style={{ alignItems: "center" }}>
-            <div className="col l-2-4 m-4 c-12">
+            <div className="col l-2-4 m-4 c-12 footer__content">
               <h3 className="footer__heading">Customer care</h3>
               <ul className="footer__list">
                 <li className="footer__list__item">
@@ -24,7 +24,7 @@ function Footer() {
               </ul>
 
             </div>
-            <div className="col l-2-4 m-4 c-12">
+            <div className="col l-2-4 m-4 c-12 footer__content">
               <h3 className="footer__heading">About us</h3>
               <ul className="footer__list">
                 <li className="footer__list__item">
@@ -38,7 +38,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col l-2-4 m-4 c-12">
+            <div className="col l-2-4 m-4 c-12 footer__content">
               <h3 className="footer__heading">Preferential</h3>
               <ul className="footer__list">
                 <li className="footer__list__item">
@@ -48,11 +48,11 @@ function Footer() {
                   <div className="footer__item__link">Special Day</div>
                 </li>
                 <li className="footer__list__item">
-                  <div className="footer__item__link">Điều khoản</div>
+                  <div className="footer__item__link">Voucher</div>
                 </li>
               </ul>
             </div>
-            <div className="col l-2-4 m-4 c-12">
+            <div className="col l-2-4 m-4 c-12 footer__content">
               <h3 className="footer__heading">Follow us</h3>
               <ul className="footer__list">
                 <li className="footer__list__item">
@@ -75,9 +75,9 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            <div className="col l-2-4 m-8 c-12">
+            <div className="col l-2-4 m-8 c-12 footer__content">
               <div className="footer__download">
-                <img src={Logo} width={50} height={50} />
+                <img src={Logo} width={50} height={50} alt={Logo} />
                 <div className="footer__download-apps">
                   <div className="footer__download-app-link">
                     <img src={AppStore} alt="" className="footer__download-app-img" />

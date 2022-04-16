@@ -1,17 +1,18 @@
 import { Button, Loading } from "@nextui-org/react"
 import axios from "axios"
 import React, { useContext, useState } from 'react'
+import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 import { GlobalStateContext } from '../GlobalState'
+import { deleteProduct } from "../redux/actions/productActions"
 import Modal from "./Modal"
-// import Button from './Button'
 
 function ProductCard({ product, isAdmin }) {
   const state = useContext(GlobalStateContext)
   const addCart = state.userAPI.addCart
   const [visible, setVisible] = useState(false);
   const [token] = state.token;
-  const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch();
 
   const handleDeleteProduct = () => {
     setVisible(true)
@@ -19,11 +20,7 @@ function ProductCard({ product, isAdmin }) {
 
   const onDeleteProduct = async (productId) => {
     try {
-      setLoading(true)
-      await axios.delete(`api/products/${productId}`, {
-        headers: { Authorization: token }
-      })
-      setLoading(false)
+      dispatch(deleteProduct(productId, token))
       setVisible(false)
     } catch (error) {
       alert(error.response.data.msg)
@@ -35,15 +32,16 @@ function ProductCard({ product, isAdmin }) {
       <div className="col l-3 m-6 c-12">
         <div className="product-item">
           {product.productImages?.length &&
-            <div className="product-item__img">
-              <img src={product.productImages[0].url} alt="" />
-            </div>
-          }
 
+            <img src={product.productImages[0].url} alt="" />
+
+          }
           <div className="product-item__info">
-            <h2 className="product-item__info__title">
-              {product.title}
-            </h2>
+            <Link to={`/detail/${product._id}`}>
+              <h2 className="product-item__info__title">
+                {product.title}
+              </h2>
+            </Link>
             <span className="product-item__info__price">
               ${product.price}
             </span>
@@ -61,7 +59,6 @@ function ProductCard({ product, isAdmin }) {
                   Delete
                 </Button>
 
-
                 <Link to={`/edit_product/${product._id}`}>
                   <Button auto>
                     Edit
@@ -72,28 +69,20 @@ function ProductCard({ product, isAdmin }) {
             ) : (
               <>
                 <Button
-                  bg="red"
-                  shadow="red"
-                  color="white"
+                  bordered
+                  auto
+                  rounded
                   onClick={() => addCart(product)}
+                  className="product-item__actions__buy__btn"
                 >
-                  <Link to="">
-                    Buy
-                  </Link>
+                  Buy
                 </Button>
 
-                <Button
-                  bg="main"
-                  shadow="main"
-                  color="white"
-                >
-                  <Link to={`/detail/${product._id}`}>
-                    View
-                  </Link>
-                </Button>
+                <Link className="product-item__actions__view__btn" to={`/detail/${product._id}`}>
+                  View
+                </Link>
 
               </>
-
             )}
           </div>
         </div>
@@ -105,11 +94,6 @@ function ProductCard({ product, isAdmin }) {
         onDeleteProduct={onDeleteProduct}
         productId={product._id}
       />
-      {
-        loading && <div className="loading">
-          <Loading />
-        </div>
-      }
     </>
   )
 }

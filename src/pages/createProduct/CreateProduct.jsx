@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import Helmet from "../../components/Helmet";
 import { GlobalStateContext } from "../../GlobalState";
 import { getAllCategories } from "../../redux/actions/categoryActions";
-import { createProduct, getAllProduct } from "../../redux/actions/productActions";
+import { createProduct, getAllProduct, updateProduct } from "../../redux/actions/productActions";
 
 function CreateProduct() {
   const params = useParams();
@@ -116,14 +116,15 @@ function CreateProduct() {
       if (!isAdmin) return toast.warning("You're not an admin")
       if (!images) return toast.warning("No images have been uploaded yet")
       if (onEdit) {
-        await axios.put(`/api/products/${product._id}`, { ...product, productImages: images }, {
-          headers: { Authorization: token }
-        })
-        dispatch(createProduct({ ...product, productImages: images }, token))
+        // await axios.put(`/api/products/${product._id}`, { ...product, productImages: images }, {
+        //   headers: { Authorization: token }
+        // })
+        dispatch(updateProduct({ ...product, productImages: images }, token))
       } else {
-        await axios.post('/api/products', { ...product, productImages: images }, {
-          headers: { Authorization: token }
-        })
+        // await axios.post('/api/products', { ...product, productImages: images }, {
+        //   headers: { Authorization: token }
+        // })
+        dispatch(createProduct({ ...product, productImages: images }, token))
       }
       setImages([])
       setProduct(initialState)
