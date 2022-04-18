@@ -1,8 +1,8 @@
+import { Button } from "@nextui-org/react"
 import React from 'react'
-import Button from './Button'
+
 
 function ProductInfo({ productDetail, addCart }) {
-  console.log(productDetail.category)
   return (
     <div className="container">
       <div className="product-info">
@@ -16,12 +16,9 @@ function ProductInfo({ productDetail, addCart }) {
           <p className="product-info__detail__price">${productDetail.price}</p>
           <p className="product-info__detail__desc">{productDetail.description}</p>
           <p className="product-info__detail__category">Category: {productDetail.category}</p>
-          <p className="product-info__detail__sold">Sold: {productDetail.sold}</p>
+          {/* <p className="product-info__detail__sold">Sold: {productDetail.sold}</p> */}
           <div className="product-info__detail__actions">
             <Button
-              backgroundcolor="red"
-              shadowcolor="red"
-              color="white"
               onClick={() => addCart(productDetail)}
             >
               Buy now

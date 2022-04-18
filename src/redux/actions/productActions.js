@@ -39,7 +39,7 @@ export const createProduct = ({ productImages, ...product }, token) => {
       const res = await axios.post('/api/products', { ...product, productImages }, {
         headers: { Authorization: token }
       })
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: CREATE_PRODUCT,
         payload: res.data.product
@@ -57,6 +57,8 @@ export const updateProduct = ({ productImages, ...product }, token) => {
       await axios.put(`/api/products/${product._id}`, { ...product, productImages }, {
         headers: { Authorization: token }
       })
+      console.log({ ...product, productImages })
+
       dispatch({
         type: UPDATE_PRODUCT,
         payload: { ...product, productImages }

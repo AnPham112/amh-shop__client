@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ProductCard from '../../components/ProductCard';
-import ProductInfo from '../../components/ProductInfo';
+import ProductCard from "../../components/product/ProductCard";
+import ProductInfo from "../../components/product/ProductInfo";
+// import ProductInfo from '../../components/ProductInfo';
 import { GlobalStateContext } from '../../GlobalState';
 import { getAllProduct } from '../../redux/actions/productActions';
 
@@ -17,8 +18,6 @@ function ProductDetail() {
   const { products } = useSelector(state => state.product)
   const addCart = state.userAPI.addCart
   const [productDetail, setProductDetail] = useState([]);
-
-  console.log('params.id', params.id);
 
   useEffect(() => {
     if (params.id) {

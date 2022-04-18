@@ -7,8 +7,6 @@ import { GlobalStateContext } from '../GlobalState'
 import { logout } from '../redux/actions/authActions'
 import '../sass/index.scss'
 
-
-
 function Header() {
   const state = useContext(GlobalStateContext)
   const [isLogged] = state.userAPI.isLogged

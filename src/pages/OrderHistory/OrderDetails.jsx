@@ -1,3 +1,4 @@
+import { Card } from "@nextui-org/react"
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { GlobalStateContext } from '../../GlobalState'
@@ -13,7 +14,8 @@ function OrderDetails() {
   useEffect(() => {
     if (params.id) {
       history.forEach(item => {
-        if (item._id === params.id) setOrderDetails(item)
+        if (item._id === params.id)
+          setOrderDetails(item)
       })
     }
   }, [params.id, history])
@@ -22,54 +24,54 @@ function OrderDetails() {
 
 
   return (
-    <div className='order-details'>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Postal Code</th>
-            <th>Country Code</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{orderDetails.address.recipient_name}</td>
-            <td>{orderDetails.address.line1 + " - " + orderDetails.address.city}</td>
-            <td>{orderDetails.address.postal_code}</td>
-            <td>{orderDetails.address.country_code}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="order-details">
+        <Card>
+          <div className="grid wide">
+            <div className="row">
+              <div className="col l-3 m-3 c-4">
+                <p>Name</p>
+                <p>Address</p>
+                <p>Postal Code</p>
+                <p>Country Code</p>
+              </div>
+              <div className="col l-9 m-9 c-8">
+                <p>{orderDetails.address.recipient_name}</p>
+                <p>{orderDetails.address.line1 + " - " + orderDetails.address.city}</p>
+                <p>{orderDetails.address.postal_code}</p>
+                <p>{orderDetails.address.country_code}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
 
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Products</th>
-            <th>Quantity</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            orderDetails.cart.map((item) => (
-              <tr>
-                <td><img src={item.images.url} alt="" /></td>
-                <td>{item.title}</td>
-                <td>{item.quantity}</td>
-                <td>${item.price * item.quantity}</td>
-              </tr>
-            ))
-          }
-          <tr>
-            <td>{orderDetails.address.recipient_name}</td>
-            <td>{orderDetails.address.line1 + " - " + orderDetails.address.city}</td>
-            <td>{orderDetails.address.postal_code}</td>
-            <td>{orderDetails.address.country_code}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table className="order-details__table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              {/* <th>Products</th> */}
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              orderDetails.cart.map((item, index) => (
+                <tr key={index}>
+                  <td className="order-details__table__info__box">
+                    <div className="order-details__table__info">
+                      <img className="order-details__table__info__img" src={item.images.url} alt={item.images.url} />
+                      <span className="order-details__table__info__title">{item.title}</span>
+                    </div>
+                  </td>
+                  <td><span className="order-details__table__quantity">{item.quantity}</span></td>
+                  <td><span className="order-details__table__price">${item.price * item.quantity}</span></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

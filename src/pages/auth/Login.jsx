@@ -26,7 +26,7 @@ function Login() {
   const { loading } = useSelector(state => state.auth);
   return (
     <>
-      <div className="container full-screen">
+      <div className="container center">
         <Card css={{ mw: "450px" }}>
           <Text h3 css={{ ta: "center" }}>Login</Text>
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { toast } from "react-toastify"
-import { GET_CATEGORIES, HIDE_LOADER, SHOW_LOADER } from "../constants"
+import { CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, GET_CATEGORIES } from "../constants"
 
 export const getAllCategories = () => {
   return async (dispatch) => {
@@ -19,24 +19,29 @@ export const getAllCategories = () => {
 export const createCategory = (name, token) => {
   return async (dispatch) => {
     try {
-      await axios.post('/api/category', name, {
+      const res = await axios.post('/api/category', name, {
         headers: { Authorization: token }
       })
-      // console.log('res ne cu', res.data.msg)
+      dispatch({
+        type: CREATE_CATEGORY,
+        payload: res.data.category
+      })
     } catch (error) {
       console.log(error.message.data.msg)
     }
   }
 }
 
-export const editCategory = (id, name, token) => {
+export const editCategory = ({ name, ...cate }, token) => {
   return async (dispatch) => {
     try {
-      await axios.put(`/api/category/${id}`, name, {
+      await axios.put(`/api/category/${cate._id}`, { name: name }, {
         headers: { Authorization: token }
       })
-
-
+      dispatch({
+        type: EDIT_CATEGORY,
+        payload: { name, ...cate }
+      })
     } catch (error) {
       toast.error(error.response.data.msg)
     }
@@ -48,6 +53,10 @@ export const deleteCategory = (id, token) => {
     try {
       await axios.delete(`/api/category/${id}`, {
         headers: { Authorization: token }
+      })
+      dispatch({
+        type: DELETE_CATEGORY,
+        payload: id
       })
     } catch (error) {
       toast.error(error.response.data.msg)

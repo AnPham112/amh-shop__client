@@ -1,4 +1,62 @@
 .products {
   background-color: $main-bg;
-  padding: 1.6rem 0;
+  padding-top: 16px;
+  &__header__search {
+    margin-bottom: 16px;
+    flex: 1;
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    &__input__wrap {
+      flex: 1;
+      height: 100%;
+      position: relative;
+    }
+    &__input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: $txt-main-color;
+      padding: 0 16px;
+      border-radius: 8px;
+    }
+    &__select {
+      background-color: #ccc;
+      position: relative;
+      height: 100%;
+      select {
+        // padding: 8px 6px;
+        cursor: pointer;
+        height: 100%;
+      }
+    }
+    &__btn {
+      background-color: #0070f3;
+      border: none;
+      height: 100%;
+      width: 60px;
+      outline: none;
+      cursor: pointer;
+      &:hover {
+        background-color: #3d98ff;
+      }
+      &__icon {
+        color: #fff;
+      }
+    }
+  }
+  &__list {
+    margin-top: 16px;
+  }
+}
+.header__ .header__search-btn:hover {
+  background-color: #ec593c;
+  cursor: pointer;
+}
+.header__search-btn-icon {
+  font-size: 1.6rem;
+  color: var(--white-color);
 }

@@ -14,7 +14,6 @@ import OrderHistory from './pages/OrderHistory/OrderHistory'
 import OrderDetails from './pages/OrderHistory/OrderDetails'
 import Categories from './pages/Categories/Categories'
 import CreateProduct from './pages/createProduct/CreateProduct'
-import EditProduct from './pages/editProduct/EditProduct'
 
 
 function App() {

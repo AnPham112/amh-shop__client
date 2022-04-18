@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import ProductAPI from './api/ProductAPI'
+// import ProductAPI from './api/ProductAPI'
 import UserAPI from './api/UserAPI'
 
 const GlobalStateContext = createContext()
@@ -26,7 +25,7 @@ function GlobalStateProvider({ children }) {
 
   const state = {
     token: [token],
-    productAPI: ProductAPI(),
+    // productAPI: ProductAPI(),
     userAPI: UserAPI(token),
   }
 

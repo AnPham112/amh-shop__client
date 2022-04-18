@@ -1,15 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  Grid,
-  Input,
-  Loading,
-  Row,
-  Spacer,
-  Text,
-  Textarea,
-} from "@nextui-org/react";
+import { Avatar, Button, Card, Grid, Input, Loading, Row, Spacer, Text, Textarea } from "@nextui-org/react";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -116,14 +105,8 @@ function CreateProduct() {
       if (!isAdmin) return toast.warning("You're not an admin")
       if (!images) return toast.warning("No images have been uploaded yet")
       if (onEdit) {
-        // await axios.put(`/api/products/${product._id}`, { ...product, productImages: images }, {
-        //   headers: { Authorization: token }
-        // })
         dispatch(updateProduct({ ...product, productImages: images }, token))
       } else {
-        // await axios.post('/api/products', { ...product, productImages: images }, {
-        //   headers: { Authorization: token }
-        // })
         dispatch(createProduct({ ...product, productImages: images }, token))
       }
       setImages([])
@@ -261,8 +244,8 @@ function CreateProduct() {
                       </option>
                       {categories?.map((category) => (
                         <option
-                          value={category._id}
                           key={category._id}
+                          value={category.name}
                         >
                           {category.name}
                         </option>
@@ -270,7 +253,10 @@ function CreateProduct() {
                     </select>
                   </div>
                   <Spacer y={0.5} />
-                  <Button type="submit">{onEdit ? "Update" : "Create"}</Button>
+                  <Button
+                    type="submit"
+                    className="create-product__submit__btn"
+                  >{onEdit ? "Update" : "Create"}</Button>
                 </form>
               </Grid>
             </Grid.Container>

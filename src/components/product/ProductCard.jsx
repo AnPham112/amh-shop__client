@@ -1,11 +1,10 @@
-import { Button, Loading } from "@nextui-org/react"
-import axios from "axios"
+import { Button } from "@nextui-org/react"
 import React, { useContext, useState } from 'react'
 import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
-import { GlobalStateContext } from '../GlobalState'
-import { deleteProduct } from "../redux/actions/productActions"
-import Modal from "./Modal"
+import { GlobalStateContext } from "../../GlobalState"
+import { deleteProduct } from "../../redux/actions/productActions"
+import Modal from "./ModalDeleteProduct"
 
 function ProductCard({ product, isAdmin }) {
   const state = useContext(GlobalStateContext)
@@ -32,9 +31,7 @@ function ProductCard({ product, isAdmin }) {
       <div className="col l-3 m-6 c-12">
         <div className="product-item">
           {product.productImages?.length &&
-
             <img src={product.productImages[0].url} alt="" />
-
           }
           <div className="product-item__info">
             <Link to={`/detail/${product._id}`}>

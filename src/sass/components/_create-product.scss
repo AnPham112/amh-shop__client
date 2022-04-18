@@ -32,4 +32,11 @@
     justify-content: center;
     z-index: 100;
   }
+
+  @include mobile {
+    &__submit__btn,
+    &__select__category {
+      width: 100%;
+    }
+  }
 }

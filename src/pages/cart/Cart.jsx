@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
 import Helmet from '../../components/Helmet'
 import { GlobalStateContext } from '../../GlobalState'
-import { Text, Row } from '@nextui-org/react';
-import Modal from '../../components/Modal';
+import { Text } from '@nextui-org/react';
 import axios from 'axios';
 import PaypalButton from './Paypal';
 import { toast } from 'react-toastify';
@@ -75,7 +72,7 @@ function Cart() {
 
   if (cart.length === 0)
     return (
-      <div className="container full-screen">
+      <div className="container center">
         <Text h3 color="white">Cart empty</Text>
       </div>
     )
@@ -95,8 +92,8 @@ function Cart() {
               </tr>
             </thead>
             {
-              cart.map((item) => (
-                <tbody>
+              cart.map((item, index) => (
+                <tbody key={index}>
                   <tr>
                     <td className="cart__table__item__info__box">
                       <div className="cart__table__item__info">

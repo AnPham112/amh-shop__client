@@ -3,6 +3,7 @@ import { GlobalStateContext } from '../../GlobalState'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
+import { Text } from "@nextui-org/react"
 
 function OrderHistory() {
   const state = useContext(GlobalStateContext)
@@ -30,30 +31,37 @@ function OrderHistory() {
   }, [token, isAdmin, setHistory])
 
   return (
-    <div className='order-history'>
-      <h2>History</h2>
-      <h4>You have {history.length} ordered</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>PaymentID</th>
-            <th>Date of Purchased</th>
-            <th>Payment ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            history.map(item => (
-              <tr key={item._id}>
-                <td>{item.paymentID}</td>
-                <td>{moment(item.createdAt).format('YYYY-MM-DD')}</td>
-                <td><Link to={`/history/${item._id}`}>View</Link></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-
+    <div className="container full-screen">
+      <div className="order-history">
+        <div className="order-history__heading">
+          <Text h2 color="white">History</Text>
+          <Text h4 color="white">You have {history.length} ordered</Text>
+        </div>
+        <table className="order-history__table">
+          <thead>
+            <tr>
+              <th>PaymentID</th>
+              <th>Date of Purchased</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              history.map(item => (
+                <tr key={item._id}>
+                  <td>{item.paymentID}</td>
+                  <td>{moment(item.createdAt).format('YYYY-MM-DD')}</td>
+                  <td>
+                    <Link to={`/history/${item._id}`}>
+                      <i className="fa-solid fa-eye order-history__table__view__icon"></i>
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

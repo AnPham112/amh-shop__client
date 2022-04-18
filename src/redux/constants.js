@@ -17,4 +17,7 @@ export const DELETE_PRODUCT = "delete_product"
 
 //Categories
 export const GET_CATEGORIES = "get_categories"
+export const CREATE_CATEGORY = "create_category"
+export const DELETE_CATEGORY = "delete_category"
+export const EDIT_CATEGORY = "edit_category"
 

@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllProduct } from '../redux/actions/productActions'
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { getAllProduct } from '../redux/actions/productActions'
 
-function ProductAPI() {
-  const dispatch = useDispatch()
+// function ProductAPI() {
+//   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getAllProduct())
-  }, [dispatch])
+//   useEffect(() => {
+//     dispatch(getAllProduct())
+//   }, [dispatch])
 
-  const product = useSelector(state => state.product)
-  const { products } = product;
+//   const product = useSelector(state => state.product)
+//   const { products } = product;
 
-  return {
-    products: [products]
-  }
-}
+//   return {
+//     products: [products]
+//   }
+// }
 
-export default ProductAPI
+// export default ProductAPI

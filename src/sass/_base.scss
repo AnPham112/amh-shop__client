@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap");
 
 * {
   padding: 0;
@@ -44,15 +44,24 @@ a {
 }
 
 .container.full-screen {
-  height: calc(100vh - ((#{$header-height} + #{$border-width})));
+  min-height: calc(100vh - ((#{$header-height} + #{$border-width})));
+  @include tablet {
+    min-height: calc(100vh - (#{$header-tablet-height} + #{$border-width}));
+  }
+  @include mobile {
+    min-height: calc(100vh - (#{$header-mobile-height} + #{$border-width}));
+  }
+}
+.container.center {
+  min-height: calc(100vh - ((#{$header-height} + #{$border-width})));
   display: flex;
   align-items: center;
   justify-content: center;
   @include tablet {
-    height: calc(100vh - (#{$header-tablet-height} + #{$border-width}));
+    min-height: calc(100vh - (#{$header-tablet-height} + #{$border-width}));
   }
   @include mobile {
-    height: calc(100vh - (#{$header-mobile-height} + #{$border-width}));
+    min-height: calc(100vh - (#{$header-mobile-height} + #{$border-width}));
   }
 }
 
@@ -71,13 +80,13 @@ a {
 
 .main {
   margin-top: calc(#{$header-height} + #{$border-width});
-  min-height:100vh;
+  min-height: 100vh;
   background-color: $main-bg;
   @include tablet {
     margin-top: calc(#{$header-tablet-height} + #{$border-width});
   }
   @include mobile {
-   margin-top: calc(#{$header-mobile-height} + #{$border-width});
+    margin-top: calc(#{$header-mobile-height} + #{$border-width});
   }
 }
 
@@ -90,7 +99,7 @@ a {
     color: $val;
   }
 }
-// Button shadow color 
+// Button shadow color
 @each $color, $val in $colors {
   .btn-shadow--#{$color} {
     box-shadow: 0 8px 16px $val;

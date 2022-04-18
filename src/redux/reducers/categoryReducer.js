@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, HIDE_LOADER, SHOW_LOADER } from "../constants"
+import { CREATE_CATEGORY, DELETE_CATEGORY, EDIT_CATEGORY, GET_CATEGORIES, HIDE_LOADER, SHOW_LOADER } from "../constants"
 
 
 const initState = {
@@ -12,6 +12,28 @@ const categoryReducer = (state = initState, action) => {
       return {
         ...state,
         categories: action.payload
+      }
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        categories: [action.payload, ...state.categories]
+      }
+    case EDIT_CATEGORY:
+      const newCategory = state.categories.map(category => (
+        category._id === action.payload._id
+          ? action.payload
+          : category
+      ))
+      return {
+        ...state,
+        categories: newCategory
+      }
+    case DELETE_CATEGORY:
+      return {
+        ...state,
+        categories: state.categories.filter(category => (
+          category._id !== action.payload
+        ))
       }
     case SHOW_LOADER:
       return {

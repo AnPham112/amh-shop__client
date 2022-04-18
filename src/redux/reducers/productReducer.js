@@ -2,14 +2,6 @@ import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCTS, UPDATE_PRODUCT } from
 
 const initState = {
   products: [],
-  product: {
-    _id: "",
-    product_id: "",
-    title: "",
-    price: 0,
-    description: "",
-    category: ""
-  },
   result: null,
 }
 
