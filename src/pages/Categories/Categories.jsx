@@ -85,7 +85,7 @@ function Categories() {
                     <td>
                       <span>{cate.name}</span>
                     </td>
-                    <td style={{ display: "flex" }}>
+                    <td style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                       <Button css={{ mx: "3px" }} auto flat color="warning" icon={<i className="fa-solid fa-pen-to-square"></i>}
                         onClick={() => handleOpenEditModal(cate)}
                       />

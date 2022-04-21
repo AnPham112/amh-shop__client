@@ -81,7 +81,7 @@ function Cart() {
     <Helmet title="Cart">
       <div className="container">
         <div className="cart">
-          <table class="cart__table">
+          <table className="cart__table">
             <thead>
               <tr>
                 <th>Product</th>
@@ -119,7 +119,7 @@ function Cart() {
                       </div>
                     </td>
                     <td>
-                      <div style={{ textAlign: "center" }} onClick={() => handleRemoveProduct(item._id)}>
+                      <div style={{ textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => handleRemoveProduct(item._id)}>
                         <i className="fa-solid fa-trash-can cart__table__item__icon"></i>
                       </div>
                     </td>

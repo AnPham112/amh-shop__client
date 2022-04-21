@@ -82,7 +82,6 @@
           font-weight: 600;
         }
       }
-      // padding: 0 4px;
       &__quantity__control {
         display: flex;
         align-items: center;
@@ -104,10 +103,8 @@
         color: #ff0000;
         width: 30px;
         height: 30px;
-        line-height: 30px;
-        text-align: center;
-        border-radius: 50%;
-        border: 1px solid #ff0000;
+        position: relative;
+        top: 3px;
       }
     }
 

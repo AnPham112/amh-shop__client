@@ -39,11 +39,11 @@ export const createProduct = ({ productImages, ...product }, token) => {
       const res = await axios.post('/api/products', { ...product, productImages }, {
         headers: { Authorization: token }
       })
-      // console.log(res)
       dispatch({
         type: CREATE_PRODUCT,
         payload: res.data.product
       })
+      toast.success("Create product successfully")
     }
     catch (error) {
       return toast.error(error.response.data.error)
@@ -54,7 +54,7 @@ export const createProduct = ({ productImages, ...product }, token) => {
 export const updateProduct = ({ productImages, ...product }, token) => {
   return async (dispatch) => {
     try {
-      await axios.put(`/api/products/${product._id}`, { ...product, productImages }, {
+      const res = await axios.put(`/api/products/${product._id}`, { ...product, productImages }, {
         headers: { Authorization: token }
       })
       console.log({ ...product, productImages })
@@ -63,6 +63,7 @@ export const updateProduct = ({ productImages, ...product }, token) => {
         type: UPDATE_PRODUCT,
         payload: { ...product, productImages }
       })
+      toast.success(res.data.msg)
     }
     catch (error) {
       return toast.error(error.response.data.error)
@@ -73,14 +74,14 @@ export const updateProduct = ({ productImages, ...product }, token) => {
 export const deleteProduct = (productId, token) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`api/products/${productId}`, {
+      const res = await axios.delete(`api/products/${productId}`, {
         headers: { Authorization: token }
       })
       dispatch({
         type: DELETE_PRODUCT,
         payload: productId
       })
-      // console.log(productId, token)
+      toast.success(res.data.msg)
     }
     catch (error) {
       return toast.error(error.response.data.error)

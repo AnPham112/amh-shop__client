@@ -17,6 +17,7 @@ function ProductDetail() {
   const params = useParams();
   const { products } = useSelector(state => state.product)
   const addCart = state.userAPI.addCart
+  const isAdmin = state.userAPI.isAdmin
   const [productDetail, setProductDetail] = useState([]);
 
   useEffect(() => {
@@ -39,17 +40,22 @@ function ProductDetail() {
     <>
       {productDetail && <ProductInfo productDetail={productDetail} addCart={addCart} />}
       <div className="container">
-        <h2 className="related-products__title">Related products</h2>
-        <div className="grid wide">
-          <div className="row">
-            {products.map((product) => {
-              return product.category === productDetail.category
-                ? (
-                  <ProductCard key={product._id} product={product} />
-                ) : null
-            })}
-          </div>
-        </div>
+        {!isAdmin &&
+          <>
+            <h2 className="related-products__title">Related products</h2>
+            <div className="grid wide">
+              <div className="row">
+                {products.map((product) => {
+                  return product.category === productDetail.category
+                    ? (
+                      <ProductCard key={product._id} product={product} isAdmin={isAdmin} />
+                    ) : null
+                })}
+              </div>
+            </div>
+          </>
+        }
+
       </div>
     </>
   )

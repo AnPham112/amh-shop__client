@@ -6,12 +6,14 @@ import Logo from '../assets/icons/logo.svg'
 import { GlobalStateContext } from '../GlobalState'
 import { logout } from '../redux/actions/authActions'
 import '../sass/index.scss'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 function Header() {
   const state = useContext(GlobalStateContext)
   const [isLogged] = state.userAPI.isLogged
   const [isAdmin] = state.userAPI.isAdmin
   const [cart] = state.userAPI.cart
+  const [userInfo] = state.userAPI.userInfo
   const [toggle, setToggle] = useState(false)
   const dispatch = useDispatch();
 
@@ -25,7 +27,6 @@ function Header() {
 
   return (
     <div className="header">
-      {/* <div className="container"> */}
       <div className="header__wrapper">
 
         <div className="header__logo">
@@ -44,10 +45,7 @@ function Header() {
         <div className="header__menu__icon" onClick={handleToggle}>
           <i className={toggle ? "fa-solid fa-angle-left header__menu__icon__angle__left" : "fa-solid fa-bars header__menu__icon__bars"}></i>
         </div>
-        <ul
-          // className="header__menu"
-          className={toggle ? "header__menu active" : "header__menu"}
-        >
+        <ul className={toggle ? "header__menu active" : "header__menu"}>
           <li className="header__menu__item" onClick={handleToggle}>
             <Link to="/shop" className="header__menu__item__link">{isAdmin ? "Products" : "Shop"}</Link>
           </li>
@@ -69,6 +67,17 @@ function Header() {
               <li className="header__menu__item" onClick={handleToggle} >
                 <Link to="/history" className="header__menu__item__link">History</Link>
               </li>
+
+              {
+                !isAdmin ? (
+                  <li className="header__menu__item">
+                    <i className="fa-solid fa-user header__menu__item__user__icon"></i>
+                    <span className="header__menu__item__user__name">{userInfo.name}</span>
+                  </li>
+                ) : null
+              }
+
+
               <li className="header__menu__item" onClick={handleToggle}>
                 <Button
                   auto

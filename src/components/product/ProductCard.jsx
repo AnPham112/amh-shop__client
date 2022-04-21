@@ -1,4 +1,5 @@
 import { Button } from "@nextui-org/react"
+import axios from "axios"
 import React, { useContext, useState } from 'react'
 import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
@@ -10,6 +11,7 @@ function ProductCard({ product, isAdmin }) {
   const state = useContext(GlobalStateContext)
   const addCart = state.userAPI.addCart
   const [visible, setVisible] = useState(false);
+
   const [token] = state.token;
   const dispatch = useDispatch();
 
@@ -17,12 +19,21 @@ function ProductCard({ product, isAdmin }) {
     setVisible(true)
   }
 
-  const onDeleteProduct = async (productId) => {
+  const onDeleteProduct = (product) => {
     try {
-      dispatch(deleteProduct(productId, token))
+      dispatch(deleteProduct(product._id, token))
       setVisible(false)
     } catch (error) {
       alert(error.response.data.msg)
+    }
+    if (product.productImages?.length) {
+      product.productImages?.map(async (item) => {
+        await axios.post("/api/destroy", { public_id: item.public_id },
+          {
+            headers: { Authorization: token },
+          }
+        );
+      })
     }
   }
 
@@ -33,6 +44,7 @@ function ProductCard({ product, isAdmin }) {
           {product.productImages?.length &&
             <img src={product.productImages[0].url} alt="" />
           }
+
           <div className="product-item__info">
             <Link to={`/detail/${product._id}`}>
               <h2 className="product-item__info__title">
@@ -51,17 +63,17 @@ function ProductCard({ product, isAdmin }) {
               <>
                 <Button
                   auto
+                  rounded
+                  css={{ bgColor: "#ff0000" }}
                   onClick={handleDeleteProduct}
+                  className="product-item__actions__delete__btn"
                 >
                   Delete
                 </Button>
 
-                <Link to={`/edit_product/${product._id}`}>
-                  <Button auto>
-                    Edit
-                  </Button>
+                <Link to={`/edit_product/${product._id}`} className="product-item__actions__edit__btn">
+                  Edit
                 </Link>
-
               </>
             ) : (
               <>
@@ -78,7 +90,6 @@ function ProductCard({ product, isAdmin }) {
                 <Link className="product-item__actions__view__btn" to={`/detail/${product._id}`}>
                   View
                 </Link>
-
               </>
             )}
           </div>
@@ -89,7 +100,7 @@ function ProductCard({ product, isAdmin }) {
         open={visible}
         onClose={() => setVisible(false)}
         onDeleteProduct={onDeleteProduct}
-        productId={product._id}
+        product={product}
       />
     </>
   )

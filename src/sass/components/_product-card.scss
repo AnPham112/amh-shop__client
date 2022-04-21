@@ -57,23 +57,31 @@
   &__actions {
     padding: 1.6rem;
     @include flex(center, space-between);
-    &__view__btn {
+    &__view__btn,
+    &__edit__btn {
       display: block;
-      background-color: #0070f3;
-      color: #fff;
       padding: 8px 20px;
-      border-radius: 20px;
+      border-radius: 24px;
       text-align: center;
     }
-    &__view__btn,
-    &__buy__btn {
-      @include mobile {
-        width: 100%;
-      }
+    &__view__btn {
+      background-color: #0070f3;
+      color: #fff;
+    }
+    &__edit__btn {
+      background-color: #f5a623;
+      color: #fff;
     }
     @include mobile {
+      &__view__btn,
+      &__buy__btn,
+      &__delete__btn,
+      &__edit__btn {
+        width: 100%;
+      }
       flex-direction: column;
-      &__view__btn {
+      &__view__btn,
+      &__edit__btn {
         margin-top: 10px;
       }
     }

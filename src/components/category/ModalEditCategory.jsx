@@ -35,7 +35,7 @@ function ModalEditCategory({
       </Modal.Body>
       <Modal.Footer>
         <Row align="center" justify="space-between">
-          <Button auto color="$gray400"
+          <Button auto css={{ bgColor: "$gray400" }}
             onClick={onClose}
           >
             Close</Button>

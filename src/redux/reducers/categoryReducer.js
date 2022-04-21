@@ -16,7 +16,7 @@ const categoryReducer = (state = initState, action) => {
     case CREATE_CATEGORY:
       return {
         ...state,
-        categories: [action.payload, ...state.categories]
+        categories: [...state.categories, action.payload]
       }
     case EDIT_CATEGORY:
       const newCategory = state.categories.map(category => (

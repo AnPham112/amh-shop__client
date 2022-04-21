@@ -65,22 +65,23 @@
   }
 
   &__menu {
-    // margin-left: auto;
     &__item {
       display: inline-block;
       padding: 0 2rem;
       margin-bottom: 0;
       @include tabletAndMobile {
         text-align: center;
-        padding: 3rem 20px;
+        padding: 2.5rem 20px;
         display: block;
         font-size: 24px;
       }
       &__link {
         color: $txt-main-color;
-
         &:hover {
           color: $main-color;
+        }
+        @include tabletAndMobile {
+          display: block;
         }
 
         &__login {
@@ -89,7 +90,7 @@
           color: $main-color;
           border-radius: 0.3rem;
           font-weight: 500;
-          @include tabletAndMobile{
+          @include tabletAndMobile {
             width: 100%;
             display: block;
           }
@@ -103,7 +104,7 @@
           color: $main-bg;
           border-radius: 0.3rem;
           font-weight: 500;
-          @include tabletAndMobile{
+          @include tabletAndMobile {
             width: 100%;
             display: block;
           }
@@ -120,28 +121,27 @@
           @include tabletAndMobile {
             width: 100%;
           }
-          
 
           &:hover {
             opacity: 0.85;
           }
         }
       }
+      &__user {
+        &__icon,
+        &__name {
+          color: $txt-main-color;
+        }
+        &__name {
+          margin-left: 6px;
+        }
+      }
     }
-    // &__bars {
-    //   display: none;
-    // }
-    // &__close {
-    //   display: none;
-    // }
 
     &__cart {
       position: relative;
       font-size: 2rem;
-      @include tabletAndMobile {
-        margin-left: auto;
-        margin-right: 20px;
-      }
+
       span {
         background-color: $btn-second-color;
         position: absolute;
@@ -161,9 +161,17 @@
           color: $main-color;
         }
       }
-      
-
-
+      @include tabletAndMobile {
+        margin-left: auto;
+        margin-right: 20px;
+        span {
+          height: 1.4rem;
+          width: 1.4rem;
+          line-height: 1.4rem;
+          top: -3px;
+          right: -5px;
+        }
+      }
     }
     &__icon {
       color: #bababa;
@@ -185,19 +193,18 @@
       width: 100%;
       position: absolute;
       left: -100%;
-      transition: all 0.5s ease
+      transition: all 0.5s ease;
     }
     @include tablet {
-      height: calc(100vh - #{$header-tablet-height});;
+      height: calc(100vh - #{$header-tablet-height});
       top: $header-tablet-height;
       opacity: 1;
     }
 
     @include mobile {
-      height: calc(100vh - #{$header-mobile-height});;
+      height: calc(100vh - #{$header-mobile-height});
       top: $header-mobile-height;
       opacity: 1;
-
     }
 
     &.active {
@@ -206,8 +213,5 @@
       opacity: 1;
       z-index: 200;
     }
-
-    
-  
   }
 }

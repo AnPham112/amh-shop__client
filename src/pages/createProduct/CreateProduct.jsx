@@ -157,6 +157,7 @@ function CreateProduct() {
                         />
                       </svg>
                     )}
+
                   </div>
 
                   <div>
@@ -245,7 +246,7 @@ function CreateProduct() {
                       {categories?.map((category) => (
                         <option
                           key={category._id}
-                          value={category.name}
+                          value={category._id}
                         >
                           {category.name}
                         </option>

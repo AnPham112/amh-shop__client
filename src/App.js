@@ -16,6 +16,7 @@ import Categories from './pages/Categories/Categories'
 import CreateProduct from './pages/createProduct/CreateProduct'
 
 
+
 function App() {
   const state = useContext(GlobalStateContext);
   const [isLogged] = state.userAPI.isLogged

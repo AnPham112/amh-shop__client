@@ -14,7 +14,9 @@ function ModalDeleteCategory({ open, onClose, title, onDeleteCategory, delId }) 
       </Modal.Header>
       <Modal.Footer>
         <Row align="center" justify="space-between">
-          <Button auto color="$gray400" onClick={onClose}>Close</Button>
+          <Button auto onClick={onClose}
+            css={{ bgColor: "$gray400" }}
+          >Close</Button>
           <Button auto color="error" onClick={() => onDeleteCategory(delId)}
           >Yes</Button>
         </Row>

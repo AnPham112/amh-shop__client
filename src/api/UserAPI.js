@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { addToCart } from '../redux/actions/userActions';
 
 function UserAPI(token) {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cart, setCart] = useState([]);
   const [history, setHistory] = useState([])
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     if (token) {
@@ -18,10 +17,11 @@ function UserAPI(token) {
             headers: { Authorization: token }
           })
           setIsLogged(true)
-          if (res.status === 200) {
-            res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
-            setCart(res.data.cart)
-          }
+
+          res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
+          setCart(res.data.cart)
+          setUserInfo(res.data)
+
         } catch (error) {
           return toast.error(error.response.data.msg)
         }
@@ -54,7 +54,8 @@ function UserAPI(token) {
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
     addCart: addCart,
-    history: [history, setHistory]
+    history: [history, setHistory],
+    userInfo: [userInfo, setUserInfo]
   }
 }
 
