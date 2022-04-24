@@ -25,7 +25,6 @@
 
     @include mobile {
       padding-top: 0;
-      // padding-bottom: $header-mobile-height;
     }
 
     &.active {
@@ -35,11 +34,17 @@
     }
 
     &__info {
-      width: 58%;
+      width: 50%;
       @include tabletAndMobile {
         width: 100%;
         flex-grow: 1;
-        margin-top: 1rem;
+        margin-top: 7rem;
+      }
+      @include mobile {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-top: 0;
       }
       &__title {
         margin-bottom: 2.8rem;
@@ -93,17 +98,18 @@
     &__image {
       flex-grow: 1;
       position: relative;
-      height: 96%;
+      height: 80%;
       pointer-events: none;
       @include tablet {
-        height: 46%;
+        height: 40%;
+        top: 30px;
       }
       @include mobile {
         display: none;
       }
 
       img {
-        height: 84vh;
+        height: 75vh;
         position: absolute;
         bottom: 0;
         right: 0;

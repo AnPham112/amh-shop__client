@@ -1,4 +1,4 @@
-import { Card } from "@nextui-org/react"
+import { Card, Spacer, Text } from "@nextui-org/react"
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { GlobalStateContext } from '../../GlobalState'
@@ -6,9 +6,7 @@ import { GlobalStateContext } from '../../GlobalState'
 function OrderDetails() {
   const state = useContext(GlobalStateContext)
   const [history] = state.userAPI.history
-  const [orderDetails, setOrderDetails] = useState([
-
-  ])
+  const [orderDetails, setOrderDetails] = useState([])
   const params = useParams()
 
   useEffect(() => {
@@ -30,16 +28,22 @@ function OrderDetails() {
           <div className="grid wide">
             <div className="row">
               <div className="col l-3 m-3 c-4">
-                <p>Name</p>
-                <p>Address</p>
-                <p>Postal Code</p>
-                <p>Country Code</p>
+                <Text css={{ fontWeight: "600" }}>Name</Text>
+                <Spacer y={0.5} />
+                <Text css={{ fontWeight: "600" }}>Address</Text>
+                <Spacer y={0.5} />
+                <Text css={{ fontWeight: "600" }}>Postal Code</Text>
+                <Spacer y={0.5} />
+                <Text css={{ fontWeight: "600" }}>Country Code</Text>
               </div>
               <div className="col l-9 m-9 c-8">
-                <p>{orderDetails.address.recipient_name}</p>
-                <p>{orderDetails.address.line1 + " - " + orderDetails.address.city}</p>
-                <p>{orderDetails.address.postal_code}</p>
-                <p>{orderDetails.address.country_code}</p>
+                <Text>{orderDetails.address.recipient_name}</Text>
+                <Spacer y={0.5} />
+                <Text>{orderDetails.address.line1 + " - " + orderDetails.address.city}</Text>
+                <Spacer y={0.5} />
+                <Text>{orderDetails.address.postal_code}</Text>
+                <Spacer y={0.5} />
+                <Text>{orderDetails.address.country_code}</Text>
               </div>
             </div>
           </div>
@@ -49,7 +53,6 @@ function OrderDetails() {
           <thead>
             <tr>
               <th>Product</th>
-              {/* <th>Products</th> */}
               <th>Quantity</th>
               <th>Price</th>
             </tr>
@@ -57,10 +60,10 @@ function OrderDetails() {
           <tbody>
             {
               orderDetails.cart.map((item, index) => (
-                <tr key={index}>
+                <tr key={index} >
                   <td className="order-details__table__info__box">
                     <div className="order-details__table__info">
-                      <img className="order-details__table__info__img" src={item.images.url} alt={item.images.url} />
+                      <img className="order-details__table__info__img" src={item.productImages[0]?.url} alt={item.productImages[0]?.url} />
                       <span className="order-details__table__info__title">{item.title}</span>
                     </div>
                   </td>
@@ -72,7 +75,7 @@ function OrderDetails() {
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   )
 }
 

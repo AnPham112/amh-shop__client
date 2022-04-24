@@ -8,7 +8,7 @@ import { Text } from "@nextui-org/react"
 function OrderHistory() {
   const state = useContext(GlobalStateContext)
   const [history, setHistory] = state.userAPI.history
-  const [isAdmin] = state.userAPI.isAdmin
+  const isAdmin = state.userAPI.isAdmin
   const [token] = state.token
 
   useEffect(() => {

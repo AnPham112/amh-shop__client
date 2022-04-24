@@ -26,7 +26,7 @@ function CreateProduct() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [onEdit, setOnEdit] = useState(false);
-  const [isAdmin] = state.userAPI.isAdmin;
+  const isAdmin = state.userAPI.isAdmin;
   const [token] = state.token;
 
   useEffect(() => {

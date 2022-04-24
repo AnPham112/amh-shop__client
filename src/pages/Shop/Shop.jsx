@@ -9,7 +9,7 @@ import { getAllCategories } from "../../redux/actions/categoryActions"
 
 function Shop() {
   const state = useContext(GlobalStateContext)
-  const [isAdmin] = state.userAPI.isAdmin
+  const isAdmin = state.userAPI.isAdmin
   const [products, setProducts] = useState([])
   const [category, setCategory] = useState("")
   const [sort, setSort] = useState("")
@@ -67,8 +67,8 @@ function Shop() {
                 <option value=''>Newest</option>
                 <option value='sort=oldest'>Oldest</option>
                 <option value='sort=-sold'>Best sales</option>
-                <option value='sort=-price'>Price: Hight-Low</option>
-                <option value='sort=price'>Price: Low-Hight</option>
+                <option value='sort=-price'>Price: High-Low</option>
+                <option value='sort=price'>Price: Low-High</option>
               </select>
             </div>
           </div>
@@ -89,7 +89,8 @@ function Shop() {
             <Button css={{ m: "4px auto 16px auto" }}
               onClick={() => setPage(page + 1)}
             >
-              Load more</Button>
+              Load more
+            </Button>
           }
         </div>
       </div>

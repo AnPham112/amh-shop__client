@@ -1,40 +1,6 @@
-.auth-form {
-  padding: 3rem 0;
-  &__wrapper {
-    max-width: 500px;
-    // margin: 0 auto;
-    padding: 0.8rem 1.6rem;
-    background-color: #ffffff;
-    border-radius: 0.8rem;
-    color: $main-bg;
-    h2 {
-      font-weight: 600;
-      font-size: 2.4rem;
-      text-align: center;
-      margin-bottom: 1.6rem;
-    }
-    label {
-      font-size: 1.6rem;
-      font-weight: 500;
-      display: block;
-      margin-bottom: 0.8rem;
-    }
-    input {
-      width: 100%;
-      outline: none;
-      border: none;
-      margin-bottom: 1.6rem;
-      padding: 0.8rem 1.6rem;
-      font-size: 1.4rem;
-      border-radius: 0.8rem;
-    }
-    p {
-      text-align: center;
-      margin-top: 0.8rem;
-      font-size: 1.4rem;
-      a {
-        color: #0070f3;
-      }
-    }
-  }
+.link-register {
+  color: #0070f3;
+}
+.link-login {
+  color: #0070f3;
 }

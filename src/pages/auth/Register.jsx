@@ -140,7 +140,7 @@ function Register() {
         <Spacer y={1} />
         <Row justify="center">
           <Text css={{ mr: "6px" }}>You already have an account?</Text>
-          <Link to="/register">Login</Link>
+          <Link className="link-login" to="/login">Login</Link>
         </Row>
       </Card>
       {loading ?

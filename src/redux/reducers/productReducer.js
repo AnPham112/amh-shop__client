@@ -16,7 +16,7 @@ const productReducer = (state = initState, action) => {
     case CREATE_PRODUCT:
       return {
         ...state,
-        products: [action.payload, ...state.products]
+        products: [...state.products, action.payload]
       }
     case UPDATE_PRODUCT:
       const newProduct = state.products.map(product => (

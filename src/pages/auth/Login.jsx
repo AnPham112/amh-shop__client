@@ -87,7 +87,7 @@ function Login() {
           <Spacer y={1} />
           <Row justify="center">
             <Text css={{ mr: "6px" }}>Are you have an account?</Text>
-            <Link to="/register">Register</Link>
+            <Link className="link-register" to="/register">Register</Link>
           </Row>
         </Card>
         {loading ?

@@ -7,14 +7,17 @@ import { useNavigate } from "react-router-dom";
 function ProductInfo({ productDetail, addCart }) {
   const [activeThumb, setActiveThumb] = useState(0);
   const state = useContext(GlobalStateContext)
-  const [isAdmin] = state.userAPI.isAdmin
+  const isAdmin = state.userAPI.isAdmin
 
   const navigate = useNavigate();
   return (
     <div className="container">
-      <Row css={{ pt: "16px" }}>
-        <Button onClick={() => navigate(-1)}>Go back</Button>
-      </Row>
+      {isAdmin &&
+        <Row css={{ pt: "16px" }}>
+          <Button onClick={() => navigate(-1)}>Go back</Button>
+        </Row>
+      }
+
       <div className="product-info__details">
         {productDetail.productImages?.length &&
           <div className="product-info__details__img">
@@ -44,7 +47,6 @@ function ProductInfo({ productDetail, addCart }) {
             ))}
           </div>
           {!isAdmin &&
-            // <div className="product-info__detail__actions">
             <Button
               bordered
               auto
@@ -59,7 +61,6 @@ function ProductInfo({ productDetail, addCart }) {
             >
               Buy now
             </Button>
-            // </div>
           }
         </div>
       </div>

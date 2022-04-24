@@ -36,11 +36,13 @@ function ProductDetail() {
   if (productDetail.length === 0) return null
 
 
+  console.log("isAdmin", isAdmin);
+
   return (
     <>
       {productDetail && <ProductInfo productDetail={productDetail} addCart={addCart} />}
       <div className="container">
-        {!isAdmin &&
+        {!isAdmin ?
           <>
             <h2 className="related-products__title">Related products</h2>
             <div className="grid wide">
@@ -54,8 +56,8 @@ function ProductDetail() {
               </div>
             </div>
           </>
+          : null
         }
-
       </div>
     </>
   )

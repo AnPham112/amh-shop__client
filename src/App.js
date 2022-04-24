@@ -20,7 +20,7 @@ import CreateProduct from './pages/createProduct/CreateProduct'
 function App() {
   const state = useContext(GlobalStateContext);
   const [isLogged] = state.userAPI.isLogged
-  const [isAdmin] = state.userAPI.isAdmin
+  const isAdmin = state.userAPI.isAdmin
 
   return (
     <BrowserRouter>

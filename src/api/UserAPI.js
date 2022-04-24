@@ -51,7 +51,7 @@ function UserAPI(token) {
 
   return {
     isLogged: [isLogged, setIsLogged],
-    isAdmin: [isAdmin, setIsAdmin],
+    isAdmin: isAdmin,
     cart: [cart, setCart],
     addCart: addCart,
     history: [history, setHistory],

@@ -11,7 +11,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 function Header() {
   const state = useContext(GlobalStateContext)
   const [isLogged] = state.userAPI.isLogged
-  const [isAdmin] = state.userAPI.isAdmin
+  const isAdmin = state.userAPI.isAdmin
   const [cart] = state.userAPI.cart
   const [userInfo] = state.userAPI.userInfo
   const [toggle, setToggle] = useState(false)

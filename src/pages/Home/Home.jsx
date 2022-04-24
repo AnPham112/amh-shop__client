@@ -2,8 +2,8 @@ import React from 'react'
 import Helmet from '../../components/Helmet'
 import HeroSlider from '../../components/HeroSlider'
 
-import heroSliderData from '../../assets/fake-data/hero-slider'
-import policies from '../../assets/fake-data/policies'
+import heroSliderData from '../../assets/hero-slider'
+import policies from '../../assets/policies'
 import Section, { SectionBody, SectionTitle } from '../../components/Section'
 import PolicyCard from '../../components/PolicyCard'
 
@@ -42,10 +42,6 @@ function Home() {
           </div>
         </SectionBody>
       </Section>
-      {/* End policy section */}
-      {/* <Section>
-        <SectionTitle>Aloo</SectionTitle>
-      </Section> */}
     </Helmet>
   )
 }
