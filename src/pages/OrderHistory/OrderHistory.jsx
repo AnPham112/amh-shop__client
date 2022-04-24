@@ -33,10 +33,20 @@ function OrderHistory() {
   return (
     <div className="container full-screen">
       <div className="order-history">
-        <div className="order-history__heading">
-          <Text h2 color="white">History</Text>
-          <Text h4 color="white">You have {history.length} ordered</Text>
-        </div>
+        {isAdmin
+          ? (
+            <div className="order-history__heading">
+              <Text h2 color="white">History</Text>
+            </div>
+          )
+          : (
+            <div className="order-history__heading">
+              <Text h2 color="white">History</Text>
+              <Text h4 color="white">You have {history.length} ordered</Text>
+            </div>
+          )
+        }
+
         <table className="order-history__table">
           <thead>
             <tr>

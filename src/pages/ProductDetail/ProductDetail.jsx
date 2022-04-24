@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ProductCard from "../../components/product/ProductCard";
 import ProductInfo from "../../components/product/ProductInfo";
-// import ProductInfo from '../../components/ProductInfo';
 import { GlobalStateContext } from '../../GlobalState';
 import { getAllProduct } from '../../redux/actions/productActions';
 
@@ -34,9 +33,6 @@ function ProductDetail() {
 
 
   if (productDetail.length === 0) return null
-
-
-  console.log("isAdmin", isAdmin);
 
   return (
     <>

@@ -42,7 +42,7 @@ function App() {
             <Route path="history" element={isLogged ? <OrderHistory /> : <NotFound />} />
             <Route path="history/:id" element={isLogged ? <OrderDetails /> : <NotFound />} />
 
-            <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={isAdmin ? <NotFound /> : <Cart />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

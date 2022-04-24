@@ -166,6 +166,7 @@ function CreateProduct() {
                       <Input
                         type="file"
                         id="file_upload"
+                        aria-label="file-upload-input"
                         onChange={handleUploadImage}
                         css={{
                           position: "absolute",
