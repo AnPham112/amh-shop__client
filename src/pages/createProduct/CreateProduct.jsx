@@ -103,7 +103,8 @@ function CreateProduct() {
     e.preventDefault()
     try {
       if (!isAdmin) return toast.warning("You're not an admin")
-      if (!images) return toast.warning("No images have been uploaded yet")
+      if (!images.length) return toast.warning("No images have been uploaded yet")
+      if (!product.category) return toast.warning("You must select category")
       if (onEdit) {
         dispatch(updateProduct({ ...product, productImages: images }, token))
       } else {
