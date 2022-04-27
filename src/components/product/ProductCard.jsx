@@ -94,40 +94,6 @@ function ProductCard({ product }) {
                 </Link>
               </>
             )}
-
-            {/* {isAdmin && <>
-              <Button
-                auto
-                rounded
-                css={{ bgColor: "#ff0000" }}
-                onClick={handleDeleteProduct}
-                className="product-item__actions__delete__btn"
-              >
-                Delete
-              </Button>
-
-              <Link to={`/edit_product/${product._id}`} className="product-item__actions__edit__btn">
-                Edit
-              </Link>
-            </>}
-
-            {!isAdmin &&
-              <>
-                <Button
-                  bordered
-                  auto
-                  rounded
-                  onClick={() => addCart(product)}
-                  className="product-item__actions__buy__btn"
-                >
-                  Buy
-                </Button>
-
-                <Link className="product-item__actions__view__btn" to={`/detail/${product._id}`}>
-                  View
-                </Link>
-              </>
-            } */}
           </div>
         </div>
       </div>

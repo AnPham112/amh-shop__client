@@ -28,7 +28,7 @@ export const createCategory = (name, token) => {
       })
       toast.success("Create category successfully")
     } catch (error) {
-      console.log(error.message.data.msg)
+      return toast.error(error.response.data.msg)
     }
   }
 }

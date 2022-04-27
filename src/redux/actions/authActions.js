@@ -33,7 +33,7 @@ export const register = (user) => {
       localStorage.setItem('firstLogin', true)
       window.location.href = "/"
     } catch (err) {
-      console.log(err)
+      return toast.error(err.response.data.msg)
     }
   }
 }
@@ -44,8 +44,8 @@ export const logout = () => {
       await axios.post('/user/logout');
       localStorage.clear();
       window.location.href = "/";
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      return toast.error(err.response.data.msg)
     }
   }
 }

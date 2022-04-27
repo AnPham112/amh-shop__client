@@ -25,7 +25,6 @@ function GlobalStateProvider({ children }) {
 
   const state = {
     token: [token],
-    // productAPI: ProductAPI(),
     userAPI: UserAPI(token),
   }
 

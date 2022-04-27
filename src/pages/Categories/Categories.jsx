@@ -1,6 +1,7 @@
 import { Button, Text } from '@nextui-org/react'
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from "react-toastify"
 import ModalAddCategory from "../../components/category/ModalAddCategory"
 import ModalDeleteCategory from "../../components/category/ModalDeleteCategory"
 import ModalEditCategory from "../../components/category/ModalEditCategory"
@@ -23,6 +24,7 @@ function Categories() {
   }, [dispatch])
 
   const onCreateCategory = (category) => {
+    if (!category) return toast.error("Category name is required")
     dispatch(createCategory({ name: category }, token));
     setCategory("")
     setModalAddVisible(false);
