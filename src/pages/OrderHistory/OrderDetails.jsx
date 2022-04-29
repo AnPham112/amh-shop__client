@@ -20,6 +20,8 @@ function OrderDetails() {
 
   if (orderDetails.length === 0) return null;
 
+  console.log("orderDetails", orderDetails)
+
 
   return (
     <div className="container">
@@ -30,6 +32,8 @@ function OrderDetails() {
               <div className="col l-3 m-3 c-4">
                 <Text css={{ fontWeight: "600" }}>Name</Text>
                 <Spacer y={0.5} />
+                <Text css={{ fontWeight: "600" }}>Email</Text>
+                <Spacer y={0.5} />
                 <Text css={{ fontWeight: "600" }}>Address</Text>
                 <Spacer y={0.5} />
                 <Text css={{ fontWeight: "600" }}>Postal Code</Text>
@@ -37,7 +41,9 @@ function OrderDetails() {
                 <Text css={{ fontWeight: "600" }}>Country Code</Text>
               </div>
               <div className="col l-9 m-9 c-8">
-                <Text>{orderDetails.address.recipient_name}</Text>
+                <Text>{orderDetails.name}</Text>
+                <Spacer y={0.5} />
+                <Text>{orderDetails.email}</Text>
                 <Spacer y={0.5} />
                 <Text>{orderDetails.address.line1 + " - " + orderDetails.address.city}</Text>
                 <Spacer y={0.5} />

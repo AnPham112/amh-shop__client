@@ -19,11 +19,13 @@ function OrderHistory() {
             headers: { Authorization: token }
           })
           setHistory(res.data)
+          console.log(res.data)
         } else {
           const res = await axios.get('/user/history', {
             headers: { Authorization: token }
           })
           setHistory(res.data)
+          console.log(res.data)
         }
       }
       getHistory()

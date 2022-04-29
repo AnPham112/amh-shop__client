@@ -43,10 +43,11 @@ export const createProduct = ({ productImages, ...product }, token) => {
         type: CREATE_PRODUCT,
         payload: res.data.product
       })
+      console.log(res.data)
       toast.success("Create product successfully")
     }
     catch (error) {
-      return toast.error(error.response.data.error)
+      return toast.error(error.response.data.msg)
     }
   }
 }
@@ -66,7 +67,7 @@ export const updateProduct = ({ productImages, ...product }, token) => {
       toast.success(res.data.msg)
     }
     catch (error) {
-      return toast.error(error.response.data.error)
+      return toast.error(error.response.data.msg)
     }
   }
 }
@@ -84,7 +85,7 @@ export const deleteProduct = (productId, token) => {
       toast.success(res.data.msg)
     }
     catch (error) {
-      return toast.error(error.response.data.error)
+      return toast.error(error.response.data.msg)
     }
   }
 }
